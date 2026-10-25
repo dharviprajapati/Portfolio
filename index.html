@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#f8f7f2" name="theme-color"/>
+<meta content="Dharvi Prajapati — designer exploring people, spaces and systems through research-led design." name="description"/>
+<title>Dharvi Prajapati — Design &amp; Research</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --paper: #faf9f6;
+  --ink: #11110f;
+  --muted: #696861;
+  --ochre: #e8d18e;
+  --line: #d7d5cf;
+  --mono: 'DM Mono', monospace;
+  --body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image: radial-gradient(#222 0.65px, transparent 0.65px);
+  background-size: 32px 32px;
+  color: var(--ink);
+  font-family: var(--body);
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+.wrap { width: min(1320px, calc(100% - 9vw)); margin: auto; }
+
+/* Navigation */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  position: relative;
+}
+.nav:after {
+  content: "";
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--read-progress, 0%);
+  background: var(--ochre);
+  transition: width 0.12s linear;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94px;
+  height: 62px;
+  padding: 0;
+  line-height: 0;
+}
+.logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+.navlinks { display: flex; gap: 28px; }
+.nav a:hover { color: #b7831b; }
+
+/* Hero Section */
+.hero {
+  min-height: 560px;
+  display: grid;
+  grid-template-columns: 46% 54%;
+  align-items: center;
+  position: relative;
+  padding: 35px 0 8px;
+}
+.hero .composition-stage {
+  position: relative !important;
+  align-self: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: visible;
+}
+.hero .hero-composition {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 760px;
+  object-fit: contain;
+  object-position: top center;
+  mix-blend-mode: normal;
+}
+.hero .composition-hi {
+  position: absolute;
+  z-index: 4;
+  left: 10.2%;
+  top: 12.2%;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: calc(clamp(48px, 7.2vw, 105px) - 1pt);
+  font-weight: 500 !important;
+  letter-spacing: -0.09em !important;
+  line-height: 0.88 !important;
+  color: #11110f;
+  pointer-events: none;
+}
+.hanging-thread-reference {
+  position: absolute;
+  z-index: 9;
+  left: 19%;
+  top: 22.5%;
+  width: 5%;
+  height: 19.4%;
+  object-fit: fill;
+  object-position: bottom center;
+  pointer-events: none;
+  user-select: none;
+}
+.hanging-tag-flip {
+  position: absolute;
+  z-index: 8 !important;
+  left: 6.4% !important;
+  top: 41.8% !important;
+  width: 30.2% !important;
+  height: 43.2% !important;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  perspective: 1000px;
+  cursor: pointer;
+  border-radius: 2px;
+  overflow: hidden !important;
+}
+.hanging-tag-inner {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-style: preserve-3d;
+  transition: transform 0.72s cubic-bezier(0.2, 0.72, 0.25, 1);
+}
+.hanging-tag-flip:hover .hanging-tag-inner,
+.hanging-tag-flip:focus-visible .hanging-tag-inner,
+.hanging-tag-flip.is-flipped .hanging-tag-inner {
+  transform: rotateY(180deg);
+}
+.hanging-tag-face {
+  position: absolute;
+  inset: 0;
+  display: block;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hanging-tag-front {
+  background-image: url("assets/education-tag-front.png") !important;
+  transform: rotateY(0deg);
+}
+.hanging-tag-back {
+  background-image: url("assets/education-tag-back.png") !important;
+  transform: rotateY(180deg);
+}
+
+.hero-copy {
+  padding-left: 3%;
+  position: relative;
+  z-index: 2;
+}
+.eyebrow {
+  font: 11px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--muted);
+}
+.hero-copy h1 {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: calc(clamp(48px, 7.2vw, 105px) - 1pt);
+  line-height: 0.88 !important;
+  letter-spacing: -0.09em !important;
+  font-weight: 500 !important;
+  margin: 25px 0 24px;
+  max-width: 740px;
+}
+.hero-copy h1 .underline {
+  position: relative;
+  white-space: nowrap;
+}
+.intro {
+  font-size: 17px;
+  line-height: 1.8;
+  max-width: 500px;
+  color: #484741;
+}
+.cta-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  align-items: center;
+}
+.pill {
+  border: 1px solid var(--ink);
+  border-radius: 99px;
+  padding: 13px 19px;
+  font-size: 12px;
+  transition: transform 0.2s, background 0.2s, color 0.2s;
+}
+.pill.dark { background: var(--ink); color: white; }
+.pill:hover { transform: translateY(-3px); }
+.tag-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 18px; }
+.tag {
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  padding: 7px 11px;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.tag:hover {
+  background: var(--ochre);
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+/* Client Logo Marquee */
+.hero-copy .client-logos {
+  width: 100%;
+  max-width: 684px;
+  height: 100px;
+  margin: 120px 0 72px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: transparent;
+  isolation: isolate;
+}
+.client-logo-marquee {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.client-logo-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  flex-wrap: nowrap;
+  gap: 0;
+  animation: clientLogosLeftToRight 22s linear infinite;
+  will-change: transform;
+}
+.client-logo-set {
+  display: flex !important;
+  flex: 0 0 auto !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 20px !important;
+  padding: 0 10px !important;
+}
+.client-logo-set img {
+  display: block;
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  max-width: 95px;
+  max-height: 34px;
+  object-fit: contain;
+}
+.client-logo-set img.shades-logo {
+  max-width: 165px !important;
+  max-height: 58px !important;
+  transform: translateY(5px) !important;
+}
+.client-logo-set img.grasim-logo { max-width: 112px !important; max-height: 52px !important; }
+.client-logo-set img:nth-child(4) { max-width: 144px !important; max-height: 43px !important; }
+.client-logo-set img.ff-logo { max-width: 64px !important; max-height: 36px !important; }
+.client-logo-set img.ecotasar-logo { max-width: 90px !important; max-height: 28px !important; }
+.client-logo-set img.pala-logo { max-width: 78px !important; max-height: 60px !important; }
+
+@keyframes clientLogosLeftToRight {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* Scroll Flight Stage */
+.flight-section {
+  position: relative !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  padding: 0 0 100px !important;
+  overflow: visible !important;
+  isolation: isolate;
+}
+.flight-scroll-stage {
+  position: absolute;
+  inset: -90px 0 0 0;
+  height: 460px;
+  width: 100%;
+  pointer-events: none;
+  z-index: 10;
+  overflow: visible;
+}
+.flight-scroll-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.scroll-plane-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(115px, 13vw, 165px);
+  height: auto;
+  pointer-events: none;
+  transform-origin: 20% 35%;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.scroll-plane-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 14px 24px rgba(20, 18, 14, 0.08));
+}
+
+.flight-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  margin-bottom: 20px;
+  position: relative;
+  padding-top: 75px !important;
+  z-index: 1;
+}
+.flight-heading h2 {
+  font-size: clamp(42px, 6vw, 78px);
+  line-height: 0.96;
+  letter-spacing: -0.085em;
+  font-weight: 500;
+  margin: 16px 0 0;
+}
+.flight-heading .section-intro { max-width: 370px; font-size: 13px; line-height: 1.7; color: var(--muted); }
+.flight-controls { display: flex; justify-content: flex-end; flex-shrink: 0; }
+.launch-button {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--ink);
+  padding: 12px 16px;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.launch-button:hover {
+  background: var(--ink);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.flight-map {
+  height: 390px;
+  position: relative;
+  margin: 10px 0 0;
+  isolation: isolate;
+  cursor: default;
+}
+.flight-path { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.flight-node {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 18px 20px;
+  min-width: 175px;
+  cursor: pointer;
+  transition: transform 0.25s, border-color 0.25s, background 0.25s;
+}
+.flight-node:hover, .flight-node:focus-visible { transform: translateY(-5px); outline: none; border-color: var(--ink); }
+.flight-node.is-active { border-color: var(--ink); box-shadow: 5px 5px 0 var(--ochre); background: #fff; }
+.node-observe { left: 5%; top: 36%; }
+.node-synthesise { left: 43%; top: 7%; }
+.node-strategise { right: 4%; top: 44%; }
+.node-number { font: 10px var(--mono); color: var(--muted); margin-bottom: 17px; }
+.node-name { font-size: 24px; letter-spacing: -0.06em; }
+.node-note { font: 10px var(--mono); color: var(--muted); margin-top: 6px; }
+
+/* Work Section */
+.section { padding: 95px 0; }
+#work.section { padding-top: 24px !important; }
+#work .section-head { margin-top: 0 !important; margin-bottom: 28px !important; }
+#work h2 { font-size: clamp(38px, 5.6vw, 72px); font-weight: 500; letter-spacing: -0.08em; line-height: 1; margin: 0; }
+
+.visual-project-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 30px !important;
+  align-items: stretch !important;
+  width: 100% !important;
+}
+.visual-project {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1.66 / 1;
+  border: 1px solid #d7d1c4;
+  background: #f5f2e9;
+  cursor: pointer;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.visual-project img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.35s ease;
+}
+.visual-project:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 15, 13, 0.06), transparent 45%, rgba(15, 15, 13, 0.12));
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.visual-project:hover, .visual-project:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(34, 29, 19, 0.13);
+}
+.visual-project:hover img, .visual-project:focus-visible img {
+  transform: scale(1.035);
+  filter: saturate(1.04);
+}
+.visual-project:hover:after { opacity: 0.12; }
+.visual-project-arrow {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  background: rgba(25, 25, 22, 0.42);
+  color: #fff;
+  font-size: 21px;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+.visual-project:hover .visual-project-arrow,
+.visual-project:focus-visible .visual-project-arrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* About Section */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9vw;
+  align-items: start;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+.about h2 { font-size: clamp(38px, 5.6vw, 72px); font-weight: 500; letter-spacing: -0.08em; line-height: 1; margin: 14px 0 0; }
+.about-copy { font-size: clamp(21px, 2.6vw, 34px); line-height: 1.4; letter-spacing: -0.04em; }
+.about-copy em { font-style: normal; background: var(--ochre); padding: 0 4px; }
+.about-details { font-family: var(--body); font-size: 14px; line-height: 1.9; color: #4f4e48; max-width: 500px; }
+
+/* Footer */
+.footer { padding: 80px 0 30px; }
+.footer h2 {
+  font-size: clamp(48px, 9vw, 120px);
+  line-height: 0.9;
+  letter-spacing: -0.09em;
+  font-weight: 500;
+  margin: 22px 0 30px;
+}
+.social-logos-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  margin: 28px auto 8px;
+}
+.social-logos-bottom a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+}
+.social-logos-bottom img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 18px;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  border-top: 0 !important;
+}
+
+/* Modal and Cursor */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: #f8f7f2f5;
+  backdrop-filter: blur(8px);
+  display: none;
+  overflow: auto;
+  padding: 5vh 5vw;
+}
+.project-modal.is-open { display: block; }
+.modal-panel {
+  max-width: 1100px;
+  margin: auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: clamp(22px, 5vw, 64px);
+  position: relative;
+  min-height: 70vh;
+}
+.modal-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  border: 1px solid var(--ink);
+  background: #fff;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 2;
+}
+.modal-title { font-size: clamp(38px, 7vw, 84px); line-height: 0.95; letter-spacing: -0.08em; font-weight: 500; margin: 20px 0; }
+.modal-body { font-size: 16px; line-height: 1.75; max-width: 760px; }
+.modal-board { width: 100%; max-height: 70vh; object-fit: contain; background: #fff; display: block; margin: 28px 0; border: 0; }
+.modal-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+
+@media(pointer:fine) {
+  body, a, button { cursor: none; }
+  .cursor-dot {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: #e8b900;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: multiply;
+    transition: color 0.08s, scale 0.08s;
+    font-family: Arial, sans-serif;
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .cursor-dot::before { content: "*"; }
+  .cursor-dot.is-hover { color: #222; scale: 1.3; }
+  .cursor-dot.is-click { color: #e8b900; scale: 0.82; }
+}
+
+@media(max-width: 800px) {
+  .wrap { width: calc(100% - 36px); }
+  .hero { grid-template-columns: 1fr; padding-top: 0; min-height: unset; }
+  .hero .composition-stage { width: min(100%, 560px); margin: 0 auto; }
+  .hero .composition-hi { left: 9.5%; top: 12.5%; }
+  .hero-copy { padding: 35px 0 0; }
+  .hero-copy .client-logos { margin: 80px 0 50px; }
+  .flight-scroll-stage { height: 380px; inset: -60px 0 0 0; }
+  .scroll-plane-anchor { width: clamp(95px, 18vw, 130px); }
+  .flight-heading { align-items: start; flex-direction: column; padding-top: 52px !important; }
+  .visual-project-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .about { grid-template-columns: 1fr; }
+  .cursor-dot { display: none; }
+}
+@media(max-width: 430px) {
+  .hanging-thread-reference { left: 39.5%; top: 14%; width: 5.8%; height: 12.8%; }
+  .hanging-tag-flip { left: 5.4% !important; top: 26.8% !important; width: 74% !important; height: 67% !important; }
+  .flight-heading { padding-top: 46px !important; }
+}
+@media(prefers-reduced-motion: reduce) {
+  .client-logo-track { animation: none !important; }
+  .hanging-tag-inner { transition: none; }
+  .scroll-plane-anchor { top: 42px !important; left: 110px !important; opacity: 1 !important; transform: none !important; }
+}
+</style>
+</head>
+
+<body>
+<header class="wrap nav">
+  <a class="logo" href="#top" aria-label="Dharvi Prajapati home"><img src="assets/dp-logo.png" alt="Dharvi Prajapati signature logo"></a>
+  <nav class="navlinks"><a href="#work">Works</a><a href="#approach">Approach</a><a href="#about">About</a><a href="#contact">Contact ↗</a></nav>
+</header>
+
+<main id="top">
+  <!-- Hero Section -->
+  <section class="wrap hero">
+    <div class="portrait-stage composition-stage">
+      <img class="hero-composition" src="assets/hero-portrait-composition.png" alt="Portrait composition of Dharvi in a circular yellow frame with layered paper cards"/>
+      <span class="composition-hi" aria-hidden="true">Hi,</span>
+      <img class="hanging-thread-reference" src="assets/hanging-thread-reference.png" alt="" aria-hidden="true" />
+      <div class="hanging-tag-flip" aria-label="Education hanging tag">
+        <span class="hanging-tag-inner">
+          <span class="hanging-tag-face hanging-tag-front" aria-hidden="true"></span>
+          <span class="hanging-tag-face hanging-tag-back" aria-hidden="true"></span>
+        </span>
+      </div>
+    </div>
+    <div class="hero-copy">
+      <div class="eyebrow">Designer · Researcher · Observer</div>
+      <h1>I’m Dharvi<br/><span class="underline">Prajapati.</span></h1>
+      <p class="intro">I explore the relationships between <strong>people, spaces and systems</strong> — turning observations into meaningful design opportunities.</p>
+      <div class="cta-row">
+        <a class="pill dark" href="#work">Explore my work ↘</a>
+        <a class="pill" href="#about">A little about me</a>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Design research</span>
+        <span class="tag">Service &amp; spatial design</span>
+        <span class="tag">Human behaviour</span>
+      </div>
+      <div class="client-logos" aria-label="Selected companies and brands I have worked with">
+        <div class="client-logo-marquee">
+          <div class="client-logo-track">
+            <div class="client-logo-set" aria-hidden="false">
+              <img class="shades-logo" src="assets/company-shades.png" alt="Shades of India">
+              <img class="grasim-logo" src="assets/company-grasim.png" alt="Aditya Birla Grasim">
+              <img src="assets/company-fabindia.png" alt="Fabindia">
+              <img src="assets/company-window-passions.png" alt="Window Passions">
+              <img src="assets/company-mohome.png" alt="moHOME">
+              <img class="ff-logo" src="assets/company-ff.png" alt="F&amp;F">
+              <img class="ecotasar-logo" src="assets/company-ecotasar.png" alt="Ecotasar">
+              <img class="pala-logo" src="assets/company-pala-decor.png" alt="Pala Decor">
+            </div>
+            <div class="client-logo-set" aria-hidden="true">
+              <img class="shades-logo" src="assets/company-shades.png" alt="">
+              <img class="grasim-logo" src="assets/company-grasim.png" alt="">
+              <img src="assets/company-fabindia.png" alt="">
+              <img src="assets/company-window-passions.png" alt="">
+              <img src="assets/company-mohome.png" alt="">
+              <img class="ff-logo" src="assets/company-ff.png" alt="">
+              <img class="ecotasar-logo" src="assets/company-ecotasar.png" alt="">
+              <img class="pala-logo" src="assets/company-pala-decor.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach Section -->
+  <section aria-labelledby="approach-title" class="wrap flight-section" id="approach">
+    <div class="flight-scroll-stage" aria-hidden="true">
+      <svg class="flight-scroll-svg" viewBox="0 0 1200 360" preserveAspectRatio="none">
+        <path id="scroll-plane-path" 
+              d="M 1240,-10 
+                 C 1160,35 1060,115 970,165 
+                 C 890,205 845,200 800,165 
+                 C 745,120 705,100 660,105 
+                 C 590,112 510,185 410,180 
+                 C 320,175 220,95 110,42" 
+              fill="none" 
+              stroke="none"/>
+      </svg>
+      <div class="scroll-plane-anchor" id="scroll-plane">
+        <img src="assets/plane.png" onerror="this.src='assets/paper-plane.png'" alt="" class="scroll-plane-img" />
+      </div>
+    </div>
+
+    <div class="flight-heading">
+      <div><h2 id="approach-title">I observe.<br/>I make sense.<br/>I strategise.</h2></div>
+      <p class="section-intro">Design begins with noticing what others might overlook. Follow the paper plane through the way I work — from the field, to patterns, to possibilities.</p>
+      <div class="flight-controls"><button class="launch-button" id="launch-plane" type="button">↗ Fold and fly again</button></div>
+    </div>
+
+    <div class="flight-map">
+      <svg aria-hidden="true" class="flight-path" preserveAspectRatio="none" viewBox="0 0 1000 360">
+        <path d="M0,185 L95,185 C115,55 270,40 360,150 S545,300 650,170 S835,55 910,185 S740,330 575,230 S300,320 95,185" fill="none" opacity=".35" stroke="currentColor" stroke-dasharray="5 9" stroke-width="1.5"></path>
+      </svg>
+      <button aria-pressed="true" class="flight-node node-observe is-active" data-step="observe"><span class="node-number">01</span><span class="node-name">Observe</span><span class="node-note">Stay curious</span></button>
+      <button aria-pressed="false" class="flight-node node-synthesise" data-step="synthesise"><span class="node-number">02</span><span class="node-name">Synthesise</span><span class="node-note">Find the pattern</span></button>
+      <button aria-pressed="false" class="flight-node node-strategise" data-step="strategise"><span class="node-number">03</span><span class="node-name">Strategise</span><span class="node-note">Shape a response</span></button>
+    </div>
+  </section>
+
+  <!-- Work Section -->
+  <section class="wrap section" id="work">
+    <div class="section-head"><div><h2>Ideas in motion.</h2></div></div>
+    <div class="visual-project-grid" aria-label="Selected projects">
+      <a class="visual-project" href="#project-temples" data-project="temples" aria-label="Open Spaces of Intent project">
+        <img src="assets/spaces-of-intent-tile.jpg" alt="Spaces of Intent — mapping deviances in a Hindu temple"/><span class="visual-project-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="visual-project" href="#project-offspace" data-project="offspace" aria-label="Open Offspace project">
+        <img src="assets/offspace-tile.jpg" alt="Offspace — a personal space service for students"/><span class="visual-project-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="visual-project" href="#project-civil-hospital" data-project="civil-hospital" aria-label="Open Seeing Care Better project">
+        <img src="assets/seeing-care-tile.jpg" alt="Seeing Care Better — Civil Hospital Ahmedabad"/><span class="visual-project-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="visual-project" href="#project-parali" data-project="parali" aria-label="Open The Parali Plan project">
+        <img src="assets/parali-plan-tile.jpg" alt="The Parali Plan — a community intervention"/><span class="visual-project-arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="wrap section about" id="about">
+    <div>
+      <div class="eyebrow">02 · A little about me</div>
+      <h2>Curious about<br/>what makes us<br/><span style="background:var(--ochre);padding:0 5px">do what we do.</span></h2>
+    </div>
+    <div>
+      <p class="about-copy">I’m interested in the <em>invisible layers</em> shaping everyday experiences — behaviour, rituals, relationships, environments and systems.</p>
+      <p class="about-details">My approach begins with observation and listening. I use research to make sense of complexity, identify opportunities and explore how design can shift an experience for the better. I’m currently pursuing my master’s at the National Institute of Design, Gandhinagar.</p>
+      <div class="tag-row">
+        <span class="tag">Ethnography</span>
+        <span class="tag">Synthesis</span>
+        <span class="tag">Systems thinking</span>
+        <span class="tag">Prototyping</span>
+        <span class="tag">Spatial experiences</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Footer Section -->
+  <section class="wrap footer" id="contact">
+    <div class="eyebrow">03 · Have a question, idea or collaboration?</div>
+    <h2>Let’s make<br/>meaningful things.</h2>
+    <a class="pill dark" href="mailto:hello@dharviprajapati.com">Get in touch ↗</a>
+    <div class="social-logos-bottom" aria-label="Social links">
+      <a href="https://www.behance.net/dharviprajapati" target="_blank" rel="noopener noreferrer" aria-label="Behance"><img src="assets/behance-social.png" alt="Behance"/></a>
+      <a href="mailto:hello@dharviprajapati.com" aria-label="Email"><img src="assets/email-social.png" alt="Email"/></a>
+      <a href="https://www.linkedin.com/in/dharvi-prajapati/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/linkedin-social.png" alt="LinkedIn"/></a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Dharvi Prajapati</span>
+      <span>Made with curiosity &amp; intention</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </section>
+</main>
+
+<!-- Project Modal -->
+<div class="project-modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close" aria-label="Close project">×</button>
+    <div class="eyebrow" id="modal-kicker">Selected project</div>
+    <h2 class="modal-title" id="modal-title">Project title</h2>
+    <div class="modal-body" id="modal-body"></div>
+    <div id="modal-visual"></div>
+    <div class="modal-actions" id="modal-actions"></div>
+  </div>
+</div>
+
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+<script>
+// Read Progress & Tag Flip
+window.addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  document.documentElement.style.setProperty('--read-progress', `${max > 0 ? (window.scrollY / max) * 100 : 0}%`);
+}, { passive: true });
+
+document.querySelectorAll('.hanging-tag-flip').forEach(card => {
+  card.addEventListener('click', () => card.classList.toggle('is-flipped'));
+});
+
+// Project Modals
+(() => {
+  const projects = {
+    temples: {
+      kicker: '01 / Design research · Behaviour change',
+      title: 'Human Behaviour & Strategies | Temples',
+      body: 'How might we activate non-engaged spaces in a temple to encourage meaningful visitor engagement and enhance the overall temple experience? Over five weeks, the team visited 12 Hindu temples around Gandhinagar and Ahmedabad and recorded 186 behaviours through slow ethnography, observation logs, photo documentation and spatial behaviour mapping.',
+      image: 'assets/human-behaviour-cover.png',
+      pdf: 'assets/Human%20Behavior%20A0%20Final%20submission.pdf'
+    },
+    offspace: {
+      kicker: '02 / Service design · Wellbeing',
+      title: 'Offspace — a moment to reset',
+      body: 'A service-design exploration into the need for a personal space where design students can pause, recharge and regain physical and mental energy after prolonged studio hours.',
+      image: null,
+      pdf: null
+    },
+    'civil-hospital': {
+      kicker: '03 / Service design · Healthcare',
+      title: 'Seeing Care Better — Civil Hospital Ahmedabad',
+      body: 'A design-research project focused on observing the patient journey and identifying opportunities to reduce time per patient and improve the overall care experience across the hospital building.',
+      image: 'assets/seeing-care-better-cover.png',
+      pdf: null
+    },
+    parali: {
+      kicker: '04 / Community intervention · Sustainability',
+      title: 'The Parali Plan',
+      body: 'A community-intervention concept exploring how design can help transform agricultural residue into more sustainable opportunities and reduce crop burning.',
+      image: 'assets/parali-plan-tile.jpg',
+      pdf: null
+    }
+  };
+
+  const modal = document.getElementById('project-modal');
+  const title = document.getElementById('modal-title');
+  const kicker = document.getElementById('modal-kicker');
+  const body = document.getElementById('modal-body');
+  const visual = document.getElementById('modal-visual');
+  const actions = document.getElementById('modal-actions');
+
+  document.querySelectorAll('.visual-project[data-project]').forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      const d = projects[card.dataset.project];
+      if (!d) return;
+      kicker.textContent = d.kicker;
+      title.textContent = d.title;
+      body.textContent = d.body;
+      visual.innerHTML = d.image ? `<img class="modal-board" src="${d.image}" alt="${d.title}">` : '';
+      actions.innerHTML = d.pdf ? `<a class="pill dark" href="${d.pdf}" target="_blank" rel="noreferrer">Open full project PDF ↗</a>` : '<span class="eyebrow">Case study preview</span>';
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('modal-close').focus();
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+})();
+
+// Cursor Dot
+(() => {
+  const dot = document.getElementById('cursor-dot');
+  if (dot && matchMedia('(pointer:fine)').matches) {
+    let x = innerWidth / 2, y = innerHeight / 2, tx = x, ty = y;
+    document.addEventListener('pointermove', e => {
+      tx = e.clientX; ty = e.clientY;
+      dot.style.color = (Math.floor((tx + ty) / 35) % 2 === 0) ? '#e8b900' : '#292929';
+    }, { passive: true });
+    function tick() {
+      x += (tx - x) * 0.72;
+      y += (ty - y) * 0.72;
+      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+      requestAnimationFrame(tick);
+    }
+    tick();
+    document.querySelectorAll('a, button, .visual-project').forEach(el => {
+      el.addEventListener('pointerenter', () => dot.classList.add('is-hover'));
+      el.addEventListener('pointerleave', () => dot.classList.remove('is-hover'));
+    });
+    document.addEventListener('pointerdown', () => dot.classList.add('is-click'));
+    document.addEventListener('pointerup', () => dot.classList.remove('is-click'));
+  }
+})();
+
+// Flight Animation Engine
+(() => {
+  const section = document.getElementById('approach');
+  const path = document.getElementById('scroll-plane-path');
+  const plane = document.getElementById('scroll-plane');
+  const stage = document.querySelector('.flight-scroll-stage');
+
+  if (!section || !path || !plane || !stage) return;
+
+  const pathLength = path.getTotalLength();
+  let maxProgress = 0;
+  let targetProgress = 0;
+  let currentProgress = 0;
+  const lerpSpeed = 0.048;
+  let smoothedAngle = 186;
+
+  function calculateTarget() {
+    const rect = section.getBoundingClientRect();
+    const windowH = window.innerHeight;
+    const startY = windowH * 0.90;
+    const endY = windowH * 0.22;
+    const rawProgress = (startY - rect.top) / (startY - endY);
+    const clampedProgress = Math.max(0, Math.min(1, rawProgress));
+
+    if (clampedProgress > maxProgress) {
+      maxProgress = clampedProgress;
+    }
+    targetProgress = maxProgress;
+  }
+
+  function renderPlane() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    currentProgress += (targetProgress - currentProgress) * lerpSpeed;
+    const currentDist = currentProgress * pathLength;
+
+    if (currentProgress < 0.015) {
+      plane.style.opacity = '0';
+    } else {
+      const enterOpacity = Math.min(1, (currentProgress - 0.015) / 0.05);
+      plane.style.opacity = String(enterOpacity);
+    }
+
+    const delta = 15;
+    const ptPrev = path.getPointAtLength(Math.max(0, currentDist - delta));
+    const ptNext = path.getPointAtLength(Math.min(pathLength, currentDist + delta));
+    const pt = path.getPointAtLength(currentDist);
+
+    const dx = ptNext.x - ptPrev.x;
+    const dy = ptNext.y - ptPrev.y;
+    const rad = Math.atan2(dy, dx);
+    const targetDeg = rad * (180 / Math.PI) + 186;
+
+    let diff = (targetDeg - smoothedAngle) % 360;
+    if (diff < -180) diff += 360;
+    if (diff > 180) diff -= 360;
+    smoothedAngle += diff * 0.08;
+
+    const bank = Math.max(-16, Math.min(16, (dy / (Math.abs(dx) + 0.2)) * 22));
+    const pixelX = (pt.x / 1200) * stage.offsetWidth;
+    const pixelY = (pt.y / 360) * stage.offsetHeight;
+
+    plane.style.transform = `
+      translate3d(${pixelX}px, ${pixelY}px, 0)
+      translate(-20%, -35%)
+      rotate(${smoothedAngle}deg)
+      rotateX(${bank}deg)
+    `;
+
+    requestAnimationFrame(renderPlane);
+  }
+
+  window.addEventListener('scroll', calculateTarget, { passive: true });
+  window.addEventListener('resize', calculateTarget, { passive: true });
+  calculateTarget();
+  requestAnimationFrame(renderPlane);
+
+  const launchBtn = document.getElementById('launch-plane');
+  if (launchBtn) {
+    launchBtn.addEventListener('click', () => {
+      maxProgress = 0;
+      targetProgress = 0;
+      currentProgress = 0;
+      smoothedAngle = 186;
+      plane.style.opacity = '0';
+    });
+  }
+})();
+</script>
+</body>
+</html>
