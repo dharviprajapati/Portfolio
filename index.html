@@ -7,21 +7,28 @@
 <meta content="Dharvi Prajapati — designer exploring people, spaces and systems through research-led design." name="description"/>
 <title>Dharvi Prajapati — Design &amp; Research</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Lato:wght@300;400;700;900&display=swap"/>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
   --paper: #faf9f6;
   --ink: #11110f;
   --muted: #696861;
   --ochre: #e8d18e;
+  --hl: #ede5c6;   /* text highlight + hero circle */
   --line: #d7d5cf;
   --mono: 'DM Mono', monospace;
-  --body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --body: 'Lato', sans-serif;
 }
 
 * { box-sizing: border-box; }
+/* Original browser scale; responsive containers remain centred. */
 html { scroll-behavior: smooth; }
+/* Page opens at 90% zoom on desktop/tablet widths */
+@media (min-width: 768px) { html { zoom: 0.9; } }
+
 body {
   margin: 0;
   background-color: var(--paper);
@@ -42,7 +49,7 @@ button { font: inherit; }
   align-items: center;
   padding: 26px 0;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 13.5px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   position: relative;
@@ -73,7 +80,7 @@ button { font: inherit; }
   object-fit: contain;
   mix-blend-mode: multiply;
 }
-.navlinks { display: flex; gap: 28px; }
+.navlinks { display: flex; gap: 26px; }
 .nav a:hover { color: #b7831b; }
 
 /* Hero Section */
@@ -165,17 +172,28 @@ button { font: inherit; }
   background-repeat: no-repeat;
 }
 .hanging-tag-front {
-  background-image: url("assets/education-tag-front.png") !important;
+  background-image: url("assets/hanging-tag-front.webp") !important;
   transform: rotateY(0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.education-tag-icon {
+  display: block;
+  width: 66%;
+  height: 58%;
+  object-fit: contain;
+  filter: none;
 }
 .hanging-tag-back {
-  background-image: url("assets/education-tag-back.png") !important;
+  background-image: url("assets/hanging-tag-front.webp") !important;
   transform: rotateY(180deg);
 }
 
 .hero-copy {
   padding-left: 3%;
   position: relative;
+  top: 18px;
   z-index: 2;
 }
 .eyebrow {
@@ -186,9 +204,9 @@ button { font: inherit; }
 }
 .hero-copy h1 {
   font-family: Arial, Helvetica, sans-serif !important;
-  font-size: calc(clamp(48px, 7.2vw, 105px) - 1pt);
-  line-height: 0.88 !important;
-  letter-spacing: -0.09em !important;
+  font-size: clamp(38px, 5.6vw, 72px);
+  line-height: 0.95 !important;
+  letter-spacing: -0.025em !important;
   font-weight: 500 !important;
   margin: 25px 0 24px;
   max-width: 740px;
@@ -198,10 +216,62 @@ button { font: inherit; }
   white-space: nowrap;
 }
 .intro {
-  font-size: 17px;
-  line-height: 1.8;
-  max-width: 500px;
-  color: #484741;
+  font-family: 'FC Inter', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-size: clamp(16px, 1.4vw, 18.5px);
+  line-height: 1.7;
+  letter-spacing: -0.011em;
+  max-width: 590px;
+  color: #6B6A66;
+}
+ .intro-marquee { font-family: 'FC Inter', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style: italic;
+  display: inline-flex;
+  vertical-align: baseline;
+  overflow: hidden;
+  width: min(100%, 270px);
+  white-space: nowrap;
+  position: relative;
+  margin: 0 0.08em;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 1.12em;
+  line-height: 1.35;
+}
+.intro-marquee-track {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  width: max-content;
+  animation: clientLogosLeftToRight 22s linear infinite;
+  will-change: transform;
+}
+.intro-marquee-set {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 0.65em;
+  padding-right: 0.65em;
+}
+.intro-marquee-set span {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+}
+.intro-marquee-set span::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -0.1em;
+  right: -0.1em;
+  top: 14%;
+  height: 1.05em;
+  opacity: 1;
+  background-color: var(--hl);
+  background-image: url("assets/intro-marquee-set.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  transform: rotate(-1deg);
+  pointer-events: none;
 }
 .cta-row {
   display: flex;
@@ -210,15 +280,29 @@ button { font: inherit; }
   align-items: center;
 }
 .pill {
-  border: 1px solid var(--ink);
+  border: 1px solid rgba(17,17,15,0.10);
   border-radius: 99px;
   padding: 13px 19px;
   font-size: 12px;
-  transition: transform 0.2s, background 0.2s, color 0.2s;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 6px 6px 14px rgba(35, 32, 25, 0.12), -6px -6px 14px rgba(255,255,255,0.92);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
 }
-.pill.dark { background: var(--ink); color: white; }
-.pill:hover { transform: translateY(-3px); }
+.pill.dark { background: var(--paper); color: var(--ink); font-weight: 600; }
+.pill:hover { transform: translateY(-2px); box-shadow: 8px 8px 17px rgba(35, 32, 25, 0.15), -6px -6px 14px rgba(255,255,255,0.96); }
+.pill:active { transform: translateY(0); box-shadow: inset 4px 4px 8px rgba(35,32,25,0.12), inset -4px -4px 8px rgba(255,255,255,0.85); }
 .tag-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 18px; }
+.about-lenses {
+  max-width: 500px;
+  margin: 26px 0 0;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.9;
+  color: var(--muted);
+  font-weight: 700;
+}
 .tag {
   border: 1px solid var(--line);
   border-radius: 30px;
@@ -233,12 +317,17 @@ button { font: inherit; }
   transform: translateY(-2px);
 }
 
+
+.logo-marquee-before-projects { margin: 0 0 18px; }
+.logo-marquee-before-projects .client-logos { max-width: 100%; margin-bottom: 0; }
+
 /* Client Logo Marquee */
-.hero-copy .client-logos {
+.client-logos {
   width: 100%;
-  max-width: 684px;
-  height: 100px;
-  margin: 120px 0 72px;
+  max-width: 470px;
+  height: 84px;
+  margin: 0 0 8px;
+  flex: 0 1 470px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -295,12 +384,14 @@ button { font: inherit; }
   to { transform: translateX(0); }
 }
 
-/* Scroll Flight Stage */
+/* =========================================================
+   SCROLL FLIGHT STAGE (Enters Smoothly From Off-Screen Right)
+   ========================================================= */
 .flight-section {
   position: relative !important;
   border-top: 0 !important;
   border-bottom: 0 !important;
-  padding: 0 0 100px !important;
+  padding: 0 0 12px !important;
   overflow: visible !important;
   isolation: isolate;
 }
@@ -327,10 +418,10 @@ button { font: inherit; }
   width: clamp(115px, 13vw, 165px);
   height: auto;
   pointer-events: none;
-  transform-origin: 20% 35%;
+  transform-origin: 20% 35%; /* Pivot aligned with physical center-of-lift */
   transform-style: preserve-3d;
   will-change: transform, opacity;
-  opacity: 0;
+  opacity: 0; /* Fully hidden off-canvas until flight begins */
   transition: opacity 0.3s ease;
 }
 .scroll-plane-img {
@@ -345,9 +436,9 @@ button { font: inherit; }
   justify-content: space-between;
   align-items: end;
   gap: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   position: relative;
-  padding-top: 75px !important;
+  padding-top: 0 !important;
   z-index: 1;
 }
 .flight-heading h2 {
@@ -361,28 +452,34 @@ button { font: inherit; }
 .flight-controls { display: flex; justify-content: flex-end; flex-shrink: 0; }
 .launch-button {
   appearance: none;
-  background: transparent;
-  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid rgba(17,17,15,0.10);
+  border-radius: 999px;
   padding: 12px 16px;
   font: 10px var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.07em;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, transform 0.2s;
+  box-shadow: 6px 6px 14px rgba(35, 32, 25, 0.12), -6px -6px 14px rgba(255,255,255,0.92);
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 .launch-button:hover {
-  background: var(--ink);
-  color: white;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+  box-shadow: 8px 8px 17px rgba(35, 32, 25, 0.15), -6px -6px 14px rgba(255,255,255,0.96);
 }
+.launch-button:active { transform: translateY(0); box-shadow: inset 4px 4px 8px rgba(35,32,25,0.12), inset -4px -4px 8px rgba(255,255,255,0.85); }
 
 .flight-map {
-  height: 390px;
+  min-height: 0;
+  height: auto;
   position: relative;
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   isolation: isolate;
   cursor: default;
 }
+@media (max-width: 700px) {
+  }
 .flight-path { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .flight-node {
   position: absolute;
@@ -409,26 +506,72 @@ button { font: inherit; }
 
 /* Work Section */
 .section { padding: 95px 0; }
-#work.section { padding-top: 24px !important; }
+#work.section { padding-top: 0 !important; }
 #work .section-head { margin-top: 0 !important; margin-bottom: 28px !important; }
 #work h2 { font-size: clamp(38px, 5.6vw, 72px); font-weight: 500; letter-spacing: -0.08em; line-height: 1; margin: 0; }
 
+/* Case studies: two square boxes per row, stacked on small screens */
+
+/* Case study ticket: same anatomy as the project tickets, square and compact */
+.case-ticket {
+  --tk-accent: #e3a72a;
+  container-type: inline-size;
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(17, 17, 15, 0.16) 0.6px, transparent 0.6px);
+  background-size: 14px 14px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+.tk { display: grid; grid-template-columns: 9% minmax(0, 1fr) 27%; height: 100%; }
+
+.tk-spine { position: relative; background: var(--ink); color: var(--paper); display: flex; align-items: center; justify-content: center; }
+.tk-spine span { writing-mode: vertical-rl; transform: rotate(180deg); font: 2.5cqw/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase; white-space: nowrap; }
+.tk-spine::before, .tk-spine::after { content: ""; position: absolute; left: 50%; width: 1px; height: 13%; background: rgba(250, 249, 246, 0.7); }
+.tk-spine::before { top: 7%; }
+.tk-spine::after { bottom: 7%; }
+
+.tk-main { min-width: 0; display: flex; flex-direction: column; gap: 3.2cqw; padding: 6cqw 5cqw 5cqw; }
+.tk-title { margin: 0; font: 400 13.5cqw/0.92 'Instrument Serif', serif; letter-spacing: -0.02em; }
+.tk-title em { color: var(--tk-accent); }
+.tk-line { margin: 0; font: 400 3.6cqw/1.4 var(--body); color: #4f4e48; max-width: 40ch; }
+
+/* Cover photo slot: replace this div with <img class="tk-photo-img" src="assets/..." alt="..."> once a photo is ready */
+.tk-photo { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(17, 17, 15, 0.35); background: rgba(17, 17, 15, 0.035); color: var(--muted); font: 2.3cqw var(--mono); letter-spacing: 0.16em; text-transform: uppercase; }
+.tk-photo-img { flex: 1; min-height: 0; width: 100%; object-fit: cover; object-position: center; display: block; border: 1px solid rgba(17, 17, 15, 0.35); }
+
+.tk-stub { position: relative; display: flex; flex-direction: column; gap: 3cqw; padding: 7cqw 4cqw 5cqw; border-left: 1.5px dashed rgba(17, 17, 15, 0.4); }
+.tk-stub::before, .tk-stub::after { content: ""; position: absolute; left: -1.1cqw; width: 2.2cqw; height: 2.2cqw; border-radius: 50%; background: var(--paper); }
+.tk-stub::before { top: -1.1cqw; }
+.tk-stub::after { bottom: -1.1cqw; }
+.tk-rule { display: block; width: 7cqw; height: 2px; background: var(--tk-accent); }
+.tk-tags { list-style: none; margin: 0; padding: 0; font: 2.6cqw/1.6 var(--mono); letter-spacing: 0.06em; }
+.tk-foot { margin-top: auto; }
+.tk-barcode { display: block; width: 100%; height: 7cqw; }
+.tk-code { display: block; margin-top: 1.6cqw; font: 1.8cqw var(--mono); letter-spacing: 0.06em; white-space: nowrap; }
+
+
 .visual-project-grid {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 30px !important;
-  align-items: stretch !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  justify-items: center !important;
+  gap: 18px !important;
+  align-items: start !important;
   width: 100% !important;
 }
 .visual-project {
   display: block;
   position: relative;
   overflow: hidden;
-  aspect-ratio: 1.66 / 1;
-  border: 1px solid #d7d1c4;
-  background: #f5f2e9;
+  aspect-ratio: 1905 / 555;
+  width: 100%;
+  max-width: 1250px;
+  margin: -10px auto 0;
+  border: 0;
+  background: transparent;
   cursor: pointer;
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  transition: none;
 }
 .visual-project img {
   display: block;
@@ -437,6 +580,9 @@ button { font: inherit; }
   object-fit: cover;
   transition: transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.35s ease;
 }
+.visual-project.parali-project { background: transparent !important; border: 0 !important; box-shadow: none !important; }
+.visual-project.parali-project img { object-fit: contain; background: transparent; transform: none !important; filter: none !important; }
+.visual-project.parali-project:after { display: none; }
 .visual-project:after {
   content: "";
   position: absolute;
@@ -447,14 +593,14 @@ button { font: inherit; }
   pointer-events: none;
 }
 .visual-project:hover, .visual-project:focus-visible {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 30px rgba(34, 29, 19, 0.13);
+  transform: none;
+  box-shadow: none;
 }
 .visual-project:hover img, .visual-project:focus-visible img {
-  transform: scale(1.035);
-  filter: saturate(1.04);
+  transform: none;
+  filter: none;
 }
-.visual-project:hover:after { opacity: 0.12; }
+.visual-project:hover:after { opacity: 0; }
 .visual-project-arrow {
   position: absolute;
   right: 16px;
@@ -480,6 +626,96 @@ button { font: inherit; }
   transform: translateY(0);
 }
 
+
+/* spacing after the Approach heading now that the process diagram is gone */
+#approach.flight-section { padding-bottom: clamp(64px, 9vw, 130px) !important; }
+/* ================= Figma project cards + Creative cases ================= */
+@font-face{font-family:'FC Noto Sans';font-weight:700;font-style:normal;font-display:swap;src:url(assets/fonts/noto-sans-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'FC Inter';font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/inter-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'FC Inter';font-weight:500;font-style:normal;font-display:swap;src:url(assets/fonts/inter-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'FC Inter';font-weight:600;font-style:normal;font-display:swap;src:url(assets/fonts/inter-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'FC Inter';font-weight:600;font-style:italic;font-display:swap;src:url(assets/fonts/inter-latin-600-italic.woff2) format('woff2')}
+@font-face{font-family:'FC Inter';font-weight:700;font-style:normal;font-display:swap;src:url(assets/fonts/inter-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'FC Archivo';font-weight:700;font-style:normal;font-display:swap;src:url(assets/fonts/archivo-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'FC Reenie';font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/reenie-beanie-latin-400-normal.woff2) format('woff2')}
+
+.fc-grid { display: grid; width: 100%; gap: clamp(40px, 5.2vw, 76px) clamp(26px, 3.4vw, 52px); }
+.fc-ideas { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; padding: 14px 0 0; box-sizing: border-box; }
+.fc-card {
+  position: relative; display: block; width: 100%; container-type: inline-size;
+  color: #1e1e1e; text-decoration: none; -webkit-tap-highlight-color: transparent;
+  transition: transform .4s cubic-bezier(.2, .7, .2, 1);
+}
+div.fc-card { cursor: default; }
+a.fc-card { cursor: pointer; }
+a.fc-card:hover, a.fc-card:focus-visible { transform: translateY(-6px); }
+a.fc-card:focus-visible { outline: 2px solid #1e1e1e; outline-offset: 10px; border-radius: 4px; }
+.fc-i { position: absolute; display: block; max-width: none; margin: 0; }
+.fc-paper, .fc-rings { pointer-events: none; }
+.fc-t { position: absolute; margin: 0; white-space: nowrap; pointer-events: none; }
+.fc-t.fc-wrapt, .fc-desc { white-space: normal; }
+.fc-title { font-family: 'FC Noto Sans', 'Noto Sans', system-ui, sans-serif; font-weight: 700; color: #1e1e1e; letter-spacing: 0; }
+.fc-desc { font-family: 'FC Inter', 'Inter', system-ui, sans-serif; font-weight: 400; color: #8c8c8c; }
+.fc-read { font-family: 'FC Inter', 'Inter', system-ui, sans-serif; font-weight: 500; color: #282828; text-transform: uppercase; }
+.fc-arch { font-family: 'FC Archivo', 'Archivo', system-ui, sans-serif; font-weight: 700; }
+.fc-intb { font-family: 'FC Inter', 'Inter', system-ui, sans-serif; font-weight: 700; }
+.fc-diagram { position: absolute; overflow: hidden; }
+.fc-diagram > * { position: absolute; margin: 0; }
+.fc-diagram > img { max-width: none; display: block; }
+.fc-key { background: #fff; color: #8a867b; font-family: 'FC Archivo', 'Archivo', sans-serif; font-weight: 700; text-transform: uppercase; line-height: 1.2; white-space: nowrap; }
+/* Creative cases cards */
+.fc-board { position: absolute; inset: 0; background: #ebe5d2; box-shadow: -1.416cqw 2.36cqw 5.19cqw -.944cqw rgba(0,0,0,.22); }
+.fc-band { position: absolute; left: 0; top: 0; width: 100%; height: 22.547%; background: #ebe5d2; box-shadow: 0 .944cqw 2.36cqw -.472cqw rgba(0,0,0,.2); }
+.fc-label { font-family: 'FC Inter', 'Inter', system-ui, sans-serif; font-weight: 400; color: #1a1a1a; }
+.fc-note { font-family: 'FC Reenie', 'Reenie Beanie', cursive; font-weight: 400; color: #28282c; }
+#about.section { padding-top: clamp(0px, 0.6vw, 8px) !important; padding-bottom: 40px !important; }
+#field-work.section { padding-top: clamp(12px, 2.8vw, 40px) !important; padding-bottom: 0 !important; }
+#about .section-head, #field-work .section-head { margin-top: 0 !important; margin-bottom: 0 !important; }
+#about h2, #field-work h2 { font-size: clamp(38px, 5.6vw, 72px); font-weight: 500; letter-spacing: -0.08em; line-height: 1; margin: 0; }
+@font-face{font-family:'FC Lily';font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/lily-script-one-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'FC DM Sans';font-weight:500;font-style:normal;font-display:swap;src:url(assets/fonts/dm-sans-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'FC Patrick';font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/patrick-hand-latin-400-normal.woff2) format('woff2')}
+.fc-wordmark { display: flex; align-items: flex-start; line-height: 1.1; pointer-events: none; }
+.fc-lily { font-family: 'FC Lily', 'Lily Script One', cursive; font-weight: 400; color: #143140; white-space: nowrap; }
+.fc-sparkle { display: block; flex: none; }
+.fc-dmsans { font-family: 'FC DM Sans', 'DM Sans', system-ui, sans-serif; font-weight: 500; }
+.fc-dot { background: #c0503a; border-radius: 50%; pointer-events: none; }
+.fc-clip { pointer-events: none; z-index: 3; }
+div.fc-audit { cursor: default; }
+@media (min-width: 721px) {
+.fc-ideas .fc-eventease { margin-left: -0.850%; }
+.fc-ideas .fc-shifting { margin-left: -0.904%; }
+.fc-ideas .fc-tourism { margin-left: -0.980%; }
+}
+/* Curious about me */
+.cu-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 470px); gap: clamp(28px, 6vw, 90px); align-items: start; margin-top: clamp(20px, 2.6vw, 32px); padding-right: 4%; box-sizing: border-box; }
+.cu-diagram { position: relative; width: 100%; container-type: inline-size; color: #141414; margin-top: clamp(0px, 1vw, 12px); }
+.cu-diagram > * { position: absolute; margin: 0; }
+.cu-diagram > img { max-width: none; display: block; }
+.cu-pill { box-sizing: border-box; border: .38cqw solid #141414; }
+.cu-label, .cu-cap { font-family: 'FC Patrick', 'Patrick Hand', cursive; font-weight: 400; color: #141414; white-space: nowrap; }
+.cu-label { line-height: normal; }
+@media (max-width: 900px) { .cu-grid { grid-template-columns: minmax(0, 1fr); padding-right: 0; } .cu-diagram { max-width: 470px; } }
+/* Education row (Curious about me) */
+.edu-row { list-style: none; margin: max(4px, calc(clamp(28px, 3vw, 40px) - 1cm)) 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px 10px; width: max(calc(clamp(21px, 2.6vw, 34px) * 17.67), 414px); max-width: 100%; }
+.edu-item { width: 96px; flex: 0 0 96px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+.edu-logo { display: flex; align-items: center; justify-content: flex-start; height: 55px; width: 100%; }
+.edu-logo img { display: block; max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain; }
+.edu-year { margin-top: 10px; font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-size: clamp(9px, 0.7vw, 9.5px); letter-spacing: 0.12em; color: #141414; white-space: nowrap; }
+.edu-desc { margin-top: 4px; font-family: 'Inter', system-ui, sans-serif; font-size: clamp(9px, 0.63vw, 8.8px); line-height: 1.45; color: #6B6A66; max-width: 15em; }
+.edu-deg { color: #141414; font-weight: 500; }
+.edu-item:first-child .edu-logo { align-items: flex-start; }
+.edu-item:first-child .edu-logo img { max-height: 44px; }
+.edu-item:not(:first-child) .edu-logo { align-items: flex-start; }
+@media (max-width: 560px) { .edu-row { gap: 26px 20px; width: 100%; justify-content: flex-start; } .edu-item { width: calc(50% - 10px); flex-basis: calc(50% - 10px); } .edu-logo { height: 50px; } .edu-year { font-size: 10px; } .edu-desc { font-size: 10px; } }
+/* Field work */
+.fw-grid { display: grid; grid-template-columns: minmax(0, 1fr); box-sizing: border-box; }
+.fw-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 2.6%; row-gap: 40px; margin-top: clamp(40px, 5vw, 64px); align-items: start; }
+@media (max-width: 900px) { .fw-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 5%; row-gap: 72px; max-width: 560px; margin-top: clamp(64px, 10vw, 84px); } }
+@media (max-width: 480px) { .fw-cards { grid-template-columns: minmax(0, 1fr); width: 100%; max-width: 300px; gap: 48px; margin-left: auto; margin-right: auto; } }
+@media (max-width: 720px) { .fc-ideas { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .fc-card { transition: none; } a.fc-card:hover, a.fc-card:focus-visible { transform: none; } }
+
 /* About Section */
 .about {
   display: grid;
@@ -491,49 +727,55 @@ button { font: inherit; }
 }
 .about h2 { font-size: clamp(38px, 5.6vw, 72px); font-weight: 500; letter-spacing: -0.08em; line-height: 1; margin: 14px 0 0; }
 .about-copy { font-size: clamp(21px, 2.6vw, 34px); line-height: 1.4; letter-spacing: -0.04em; }
-.about-copy em { font-style: normal; background: var(--ochre); padding: 0 4px; }
+.about-copy em { font-style: normal; background: var(--hl); padding: 0 4px; }
 .about-details { font-family: var(--body); font-size: 14px; line-height: 1.9; color: #4f4e48; max-width: 500px; }
 
 /* Footer */
-.footer { padding: 80px 0 30px; }
+.footer { padding: 48px 0 30px; }
 .footer h2 {
-  font-size: clamp(48px, 9vw, 120px);
-  line-height: 0.9;
-  letter-spacing: -0.09em;
+  font-size: clamp(38px, 5.6vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.08em;
   font-weight: 500;
-  margin: 22px 0 30px;
+  margin: 11px 0 30px;
 }
-.social-logos-bottom {
+.footer-hl { background: var(--hl); padding: 0 5px; }
+.contact-links {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 24px;
-  width: 100%;
-  margin: 28px auto 8px;
+  gap: 12px;
+  margin-top: calc(77px + 1.5cm);
 }
-.social-logos-bottom a {
-  display: flex;
+.contact-links { gap: 36px !important; }
+.contact-link {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
+  padding: 4px;
+  transition: transform 0.2s, opacity 0.2s;
 }
-.social-logos-bottom img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+.contact-link:hover { transform: translateY(-2px); opacity: 0.6; }
+.contact-link:focus-visible { outline: 2px solid var(--ochre); outline-offset: 4px; border-radius: 4px; }
+.contact-icon { width: 36px; height: 36px; flex: 0 0 36px; object-fit: contain; display: block; pointer-events: none; }
 .footer-bottom {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 10px 24px;
   padding-top: 18px;
   font: 10px var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--muted);
   border-top: 0 !important;
+}
+.footer-bottom > :nth-child(2) { text-align: center; }
+.footer-bottom > :nth-child(3) { justify-self: end; }
+
+@media (max-width: 640px) {
+  .footer-bottom { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .footer-bottom > :nth-child(2) { align-self: center; text-align: center; }
 }
 
 /* Modal and Cursor */
@@ -561,51 +803,59 @@ button { font: inherit; }
   position: sticky;
   top: 0;
   float: right;
-  border: 1px solid var(--ink);
-  background: #fff;
+  border: 1px solid rgba(17,17,15,0.10);
+  background: #f8f7f2;
+  color: var(--ink);
   border-radius: 50%;
   width: 44px;
   height: 44px;
   font-size: 24px;
   cursor: pointer;
+  box-shadow: 5px 5px 12px rgba(35,32,25,0.13), -5px -5px 12px rgba(255,255,255,0.95);
+  transition: box-shadow 0.2s, transform 0.2s;
   z-index: 2;
 }
+.modal-close:hover { transform: translateY(-1px); box-shadow: 7px 7px 14px rgba(35,32,25,0.15), -5px -5px 12px rgba(255,255,255,0.95); }
+.modal-close:active { box-shadow: inset 3px 3px 7px rgba(35,32,25,0.13), inset -3px -3px 7px rgba(255,255,255,0.9); }
 .modal-title { font-size: clamp(38px, 7vw, 84px); line-height: 0.95; letter-spacing: -0.08em; font-weight: 500; margin: 20px 0; }
 .modal-body { font-size: 16px; line-height: 1.75; max-width: 760px; }
 .modal-board { width: 100%; max-height: 70vh; object-fit: contain; background: #fff; display: block; margin: 28px 0; border: 0; }
 .modal-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
 
 @media(pointer:fine) {
-  body, a, button { cursor: none; }
+  /* Hide the system pointer everywhere; the custom dot replaces it. */
+  *, *::before, *::after { cursor: none !important; }
   .cursor-dot {
     position: fixed;
     left: 0;
     top: 0;
-    width: 24px;
-    height: 24px;
+    width: 12px;
+    height: 12px;
     display: grid;
     place-items: center;
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    color: #e8b900;
     pointer-events: none;
     z-index: 9999;
-    transform: translate(-50%, -50%);
-    mix-blend-mode: multiply;
-    transition: color 0.08s, scale 0.08s;
-    font-family: Arial, sans-serif;
-    font-size: 29px;
-    font-weight: 700;
-    line-height: 1;
+    color: var(--dot-tone, #e8b900);
+    opacity: 0;
+    transform: translate3d(-100px, -100px, 0);
+    transition: opacity 0.2s, color 0.12s;
+    /* Light halo so the dot stays readable on dark areas. */
+    filter: drop-shadow(0 0 1.5px rgba(250, 249, 246, 0.9));
+    will-change: transform;
   }
-  .cursor-dot::before { content: "*"; }
-  .cursor-dot.is-hover { color: #222; scale: 1.3; }
-  .cursor-dot.is-click { color: #e8b900; scale: 0.82; }
+  .cursor-dot.is-visible { opacity: 1; }
+  /* Scale the glyph itself, not the positioned dot, so hover/press never shifts the hotspot. */
+  .cursor-dot svg { display: block; width: 11px; height: 11px; overflow: visible; transition: scale 0.12s; }
+  .cursor-dot.is-hover { color: #222; }
+  .cursor-dot.is-hover svg { scale: 1.3; }
+  .cursor-dot.is-click { color: #e8b900; }
+  .cursor-dot.is-click svg { scale: 0.82; }
 }
 
 @media(max-width: 800px) {
   .wrap { width: calc(100% - 36px); }
+  .nav { font-size: 12px; }
+  .navlinks { gap: 18px; }
   .hero { grid-template-columns: 1fr; padding-top: 0; min-height: unset; }
   .hero .composition-stage { width: min(100%, 560px); margin: 0 auto; }
   .hero .composition-hi { left: 9.5%; top: 12.5%; }
@@ -613,40 +863,125 @@ button { font: inherit; }
   .hero-copy .client-logos { margin: 80px 0 50px; }
   .flight-scroll-stage { height: 380px; inset: -60px 0 0 0; }
   .scroll-plane-anchor { width: clamp(95px, 18vw, 130px); }
-  .flight-heading { align-items: start; flex-direction: column; padding-top: 52px !important; }
-  .visual-project-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .flight-heading { align-items: start; flex-direction: column; padding-top: 30px !important; }
+  .flight-heading .client-logos { width: 100%; max-width: 100%; height: 72px; margin: 14px 0 0; flex: 0 0 auto; }
+  .visual-project-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 14px !important; }
+  .visual-project.parali-project { width: 100%; margin-top: -6px; }
   .about { grid-template-columns: 1fr; }
   .cursor-dot { display: none; }
 }
 @media(max-width: 430px) {
-  .hanging-thread-reference { left: 39.5%; top: 14%; width: 5.8%; height: 12.8%; }
-  .hanging-tag-flip { left: 5.4% !important; top: 26.8% !important; width: 74% !important; height: 67% !important; }
-  .flight-heading { padding-top: 46px !important; }
+  .flight-heading { padding-top: 26px !important; }
 }
 @media(prefers-reduced-motion: reduce) {
-  .client-logo-track { animation: none !important; }
+  .client-logo-track, .intro-marquee-track { animation: none !important; }
   .hanging-tag-inner { transition: none; }
   .scroll-plane-anchor { top: 42px !important; left: 110px !important; opacity: 1 !important; transform: none !important; }
 }
+
+.hero-static-logo { display: block; width: 100%; max-width: 1250px; height: auto; object-fit: contain; object-position: left center; margin-top: 1.5in; position: relative; top: -1cm; }
+@media (max-width: 700px) { .hero-static-logo { width: 100%; max-width: 100%; margin-top: 1.5in; } }
+
+
+/* Poster popup: image only, widened so small text renders larger */
+.project-modal.is-poster{padding:1.5vh 1vw}
+.project-modal.is-poster .modal-panel{max-width:1900px;padding:0;min-height:0;border:0}
+.project-modal.is-poster #modal-kicker,.project-modal.is-poster .modal-title,.project-modal.is-poster .modal-body,.project-modal.is-poster .modal-actions{display:none}
+.project-modal.is-poster .modal-close{margin:6px 6px 0 0}
+
+/* EventEase phone demo: video sits exactly over the static phone in slice s06 (box found by template matching) */
+.ee-demo{position:relative;margin-bottom:-1px}
+.ee-demo-box{position:absolute;left:39.222%;top:38.806%;width:23.778%;aspect-ratio:1440/2560;background:#fff;box-shadow:0 2px 0 #fff}
+.ee-demo-video{display:block;width:100%;height:100%;object-fit:cover;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(to bottom,transparent,#000 1.5%,#000 97.4%,transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(to bottom,transparent,#000 1.5%,#000 97.4%,transparent);
+  mask-composite:intersect}
+
+/* Hover animation overlays (smoke / bells) */
+.visual-project img.smoke-overlay {
+  position: absolute;
+  left: 57.16%;   /* default = Parali smoke box */
+  top: 16.31%;
+  width: 13.42%;
+  height: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.visual-project img.smoke-overlay.is-on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .visual-project img.smoke-overlay { display: none; }
+}
+
+
+/* ---- Mobile fit fixes (added so the hero and nav fit narrow screens) ---- */
+@media (max-width: 800px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .hero > *, .hero-copy { min-width: 0; max-width: 100%; }
+  .hero-static-logo { width: 100%; max-width: 100%; }
+  body { overflow-x: clip; }
+}
+@media (max-width: 430px) {
+  .nav { font-size: 9.2px; letter-spacing: 0.04em; }
+  .navlinks { gap: 9px; }
+  .logo { flex: 0 0 auto; width: 70px; height: 48px; }
+}
+
+/* Hero portrait composition: 88% of original size */
+.hero .composition-stage { width: 88%; margin-left: auto; margin-right: auto; }
+.hero .composition-hi { font-size: clamp(38px, 5.6vw, 72px); letter-spacing: -0.025em !important; line-height: 0.95 !important; }
+@media (max-width: 800px) { .hero .composition-stage { width: min(88%, 493px); } }
+
+/* Hero text block nudged down a little (logo row stays put) */
+@media (min-width: 801px) { .hero-copy .eyebrow, .hero-copy h1, .hero-copy .intro { position: relative; top: calc(6px + 1cm); } }
+
+/* "Hi," sits on the same left edge as "I observe." */
+.hero .composition-hi { left: -6.8%; }
+@media (min-width: 801px) { .hero .composition-hi { margin-top: calc(-10px + 0.7cm); } }
+
+/* Zoomable dense slice: hint pill (inside popup) + fullscreen viewer */
+.pp-z{position:relative;display:block;margin-top:-1px;cursor:zoom-in;-webkit-tap-highlight-color:transparent}
+.pp-z:focus-visible{outline:3px solid #2b6cb0;outline-offset:-3px}
+.pp-zoom-pill-wrap{position:sticky;top:64px;height:0;z-index:2;text-align:right;padding-right:clamp(10px,1.6vw,26px);pointer-events:none}
+.pp-zoom-pill{display:inline-flex;align-items:center;gap:8px;transform:translateY(clamp(8px,1.2vw,20px));padding:9px 15px 9px 12px;border-radius:999px;background:#11110f;color:#fff;font:600 13px/1 inherit;font-family:inherit;letter-spacing:.01em;box-shadow:0 4px 16px rgba(17,17,15,.28)}
+.pp-zoom-pill svg{flex:none}
+.pp-zoom-pill .t-mouse{display:none}
+@media (hover:hover) and (pointer:fine){.pp-zoom-pill .t-mouse{display:inline}.pp-zoom-pill .t-touch{display:none}}
+
+html.zv-open{overflow:hidden}
+.zv{position:fixed;inset:0;z-index:9998;background:#fff;touch-action:none}
+.zv[hidden]{display:none}
+.zv-stage{position:absolute;inset:0;background:#fff}
+.zv-bar{position:absolute;top:14px;right:14px;z-index:3;display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(255,255,255,.94);box-shadow:0 2px 16px rgba(17,17,15,.22);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.zv-bar button{width:42px;height:42px;border-radius:50%;border:0;background:transparent;color:#11110f;display:grid;place-items:center;cursor:pointer;padding:0}
+.zv-bar button:hover{background:rgba(17,17,15,.08)}
+.zv-bar button:focus-visible{outline:2px solid #2b6cb0;outline-offset:-2px}
+.zv-hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:3;margin:0;padding:9px 16px;border-radius:999px;background:rgba(17,17,15,.8);color:#fff;font:500 13px/1.2 system-ui,sans-serif;white-space:nowrap;pointer-events:none;animation:zvfade 4.5s forwards}
+@keyframes zvfade{0%,75%{opacity:1}100%{opacity:0;visibility:hidden}}
+.zv-msg{position:absolute;inset:0;z-index:2;display:grid;place-items:center;margin:0;padding:24px;text-align:center;pointer-events:none;color:#555;font:500 15px system-ui,sans-serif}
+.zv-msg[hidden]{display:none}
+@media (max-width:700px){.zv-hint{white-space:normal;width:max-content;max-width:calc(100% - 32px);text-align:center}}
+@media (prefers-reduced-motion:reduce){.zv-hint{animation:none}}
 </style>
 </head>
 
 <body>
 <header class="wrap nav">
-  <a class="logo" href="#top" aria-label="Dharvi Prajapati home"><img src="assets/dp-logo.png" alt="Dharvi Prajapati signature logo"></a>
-  <nav class="navlinks"><a href="#work">Works</a><a href="#approach">Approach</a><a href="#about">About</a><a href="#contact">Contact ↗</a></nav>
+  <a class="logo" href="#top" aria-label="Dharvi Prajapati home"><img src="assets/logo.webp" alt="Dharvi Prajapati signature logo"></a>
+  <nav class="navlinks"><a href="#work">Works</a><a href="#approach">Approach</a><a href="#about">About</a><a href="#field-work">On Field</a><a href="Dharvi_Prajapati_NID_CV.pdf" target="_blank" rel="noopener">Resume</a></nav>
 </header>
 
 <main id="top">
   <!-- Hero Section -->
   <section class="wrap hero">
     <div class="portrait-stage composition-stage">
-      <img class="hero-composition" src="assets/hero-portrait-composition.png" alt="Portrait composition of Dharvi in a circular yellow frame with layered paper cards"/>
-      <span class="composition-hi" aria-hidden="true">Hi,</span>
+      <img class="hero-composition" src="assets/hero-composition-v4.webp" alt="Portrait composition of Dharvi in a circular cream frame with layered paper cards"/>
+      <span class="composition-hi" aria-hidden="true">Hello,</span>
       <img class="hanging-thread-reference" src="assets/hanging-thread-reference.png" alt="" aria-hidden="true" />
-      <div class="hanging-tag-flip" aria-label="Education hanging tag">
+      <div class="hanging-tag-flip" aria-label="Hanging tag">
         <span class="hanging-tag-inner">
-          <span class="hanging-tag-face hanging-tag-front" aria-hidden="true"></span>
+          <span class="hanging-tag-face hanging-tag-front"></span>
           <span class="hanging-tag-face hanging-tag-back" aria-hidden="true"></span>
         </span>
       </div>
@@ -654,49 +989,17 @@ button { font: inherit; }
     <div class="hero-copy">
       <div class="eyebrow">Designer · Researcher · Observer</div>
       <h1>I’m Dharvi<br/><span class="underline">Prajapati.</span></h1>
-      <p class="intro">I explore the relationships between <strong>people, spaces and systems</strong> — turning observations into meaningful design opportunities.</p>
-      <div class="cta-row">
-        <a class="pill dark" href="#work">Explore my work ↘</a>
-        <a class="pill" href="#about">A little about me</a>
-      </div>
-      <div class="tag-row">
-        <span class="tag">Design research</span>
-        <span class="tag">Service &amp; spatial design</span>
-        <span class="tag">Human behaviour</span>
-      </div>
-      <div class="client-logos" aria-label="Selected companies and brands I have worked with">
-        <div class="client-logo-marquee">
-          <div class="client-logo-track">
-            <div class="client-logo-set" aria-hidden="false">
-              <img class="shades-logo" src="assets/company-shades.png" alt="Shades of India">
-              <img class="grasim-logo" src="assets/company-grasim.png" alt="Aditya Birla Grasim">
-              <img src="assets/company-fabindia.png" alt="Fabindia">
-              <img src="assets/company-window-passions.png" alt="Window Passions">
-              <img src="assets/company-mohome.png" alt="moHOME">
-              <img class="ff-logo" src="assets/company-ff.png" alt="F&amp;F">
-              <img class="ecotasar-logo" src="assets/company-ecotasar.png" alt="Ecotasar">
-              <img class="pala-logo" src="assets/company-pala-decor.png" alt="Pala Decor">
-            </div>
-            <div class="client-logo-set" aria-hidden="true">
-              <img class="shades-logo" src="assets/company-shades.png" alt="">
-              <img class="grasim-logo" src="assets/company-grasim.png" alt="">
-              <img src="assets/company-fabindia.png" alt="">
-              <img src="assets/company-window-passions.png" alt="">
-              <img src="assets/company-mohome.png" alt="">
-              <img class="ff-logo" src="assets/company-ff.png" alt="">
-              <img class="ecotasar-logo" src="assets/company-ecotasar.png" alt="">
-              <img class="pala-logo" src="assets/company-pala-decor.png" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
+      <p class="intro">I'm a Strategic designer translating insights on <span class="intro-marquee" aria-label="people, space, service, systems, behaviour, experience, process"><span class="intro-marquee-track"><span class="intro-marquee-set"><span>people</span><span>space</span><span>service</span><span>systems</span><span>behaviour</span><span>experience</span><span>process</span></span><span class="intro-marquee-set" aria-hidden="true"><span>people</span><span>space</span><span>service</span><span>systems</span><span>behaviour</span><span>experience</span><span>process</span></span></span></span> into actionable, outcome driven design solutions</p>
+      <img class="hero-static-logo" src="assets/hero-static-logo.png" alt="Client logos: Shades of India, Aditya Birla, Fabindia, Window Passions, Mo Home, F&F, WeHear, and Pala Decor" />
+
     </div>
   </section>
 
-  <!-- Approach Section -->
+  <!-- Approach Section with Off-Canvas Entrance & Clean Landing -->
   <section aria-labelledby="approach-title" class="wrap flight-section" id="approach">
     <div class="flight-scroll-stage" aria-hidden="true">
       <svg class="flight-scroll-svg" viewBox="0 0 1200 360" preserveAspectRatio="none">
+        <!-- Exact smooth sketch path: begins completely off-canvas (X:1240), swoops under logos, crests, and parks gently above text (Y:42) -->
         <path id="scroll-plane-path" 
               d="M 1240,-10 
                  C 1160,35 1060,115 970,165 
@@ -708,79 +1011,72 @@ button { font: inherit; }
               stroke="none"/>
       </svg>
       <div class="scroll-plane-anchor" id="scroll-plane">
-        <img src="assets/plane.png" onerror="this.src='assets/paper-plane.png'" alt="" class="scroll-plane-img" />
+        <img src="assets/scroll-plane-anchor.png" alt="" class="scroll-plane-img" />
       </div>
     </div>
 
     <div class="flight-heading">
       <div><h2 id="approach-title">I observe.<br/>I make sense.<br/>I strategise.</h2></div>
-      <p class="section-intro">Design begins with noticing what others might overlook. Follow the paper plane through the way I work — from the field, to patterns, to possibilities.</p>
-      <div class="flight-controls"><button class="launch-button" id="launch-plane" type="button">↗ Fold and fly again</button></div>
+
     </div>
 
-    <div class="flight-map">
-      <svg aria-hidden="true" class="flight-path" preserveAspectRatio="none" viewBox="0 0 1000 360">
-        <path d="M0,185 L95,185 C115,55 270,40 360,150 S545,300 650,170 S835,55 910,185 S740,330 575,230 S300,320 95,185" fill="none" opacity=".35" stroke="currentColor" stroke-dasharray="5 9" stroke-width="1.5"></path>
-      </svg>
-      <button aria-pressed="true" class="flight-node node-observe is-active" data-step="observe"><span class="node-number">01</span><span class="node-name">Observe</span><span class="node-note">Stay curious</span></button>
-      <button aria-pressed="false" class="flight-node node-synthesise" data-step="synthesise"><span class="node-number">02</span><span class="node-name">Synthesise</span><span class="node-note">Find the pattern</span></button>
-      <button aria-pressed="false" class="flight-node node-strategise" data-step="strategise"><span class="node-number">03</span><span class="node-name">Strategise</span><span class="node-note">Shape a response</span></button>
-    </div>
   </section>
 
   <!-- Work Section -->
   <section class="wrap section" id="work">
     <div class="section-head"><div><h2>Ideas in motion.</h2></div></div>
-    <div class="visual-project-grid" aria-label="Selected projects">
-      <a class="visual-project" href="#project-temples" data-project="temples" aria-label="Open Spaces of Intent project">
-        <img src="assets/spaces-of-intent-tile.jpg" alt="Spaces of Intent — mapping deviances in a Hindu temple"/><span class="visual-project-arrow" aria-hidden="true">↗</span>
-      </a>
-      <a class="visual-project" href="#project-offspace" data-project="offspace" aria-label="Open Offspace project">
-        <img src="assets/offspace-tile.jpg" alt="Offspace — a personal space service for students"/><span class="visual-project-arrow" aria-hidden="true">↗</span>
-      </a>
-      <a class="visual-project" href="#project-civil-hospital" data-project="civil-hospital" aria-label="Open Seeing Care Better project">
-        <img src="assets/seeing-care-tile.jpg" alt="Seeing Care Better — Civil Hospital Ahmedabad"/><span class="visual-project-arrow" aria-hidden="true">↗</span>
-      </a>
-      <a class="visual-project" href="#project-parali" data-project="parali" aria-label="Open The Parali Plan project">
-        <img src="assets/parali-plan-tile.jpg" alt="The Parali Plan — a community intervention"/><span class="visual-project-arrow" aria-hidden="true">↗</span>
-      </a>
+    <div class="fc-grid fc-ideas" aria-label="Selected projects">
+<a class="fc-card fc-eventease" href="#project-eventease" data-project="eventease" aria-label="Open EventEase project" style="aspect-ratio:540.100/385.232"><img class="fc-i fc-paper" style="left:-2.962%;top:4.802%;width:105.075%;height:110.513%" src="assets/fc/ee-back.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i fc-paper" style="left:-2.113%;top:4.802%;width:105.075%;height:110.513%" src="assets/fc/ee-front.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i fc-rings" style="left:18.693%;top:0.000%;width:68.208%;height:15.581%" src="assets/fc/rings-parali.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><span class="fc-t fc-wordmark" style="left:51.520%;top:46.030%;font-size:8.585cqw" aria-label="EventEase"><span class="fc-lily" aria-hidden="true">EventEase</span><img class="fc-sparkle" src="assets/fc/ee-sparkle.svg" alt="" aria-hidden="true" style="width:.3133em;height:.3133em"></span><p class="fc-t fc-desc" style="left:71.861%;top:59.753%;width:20.0113%;font-size:1.6354cqw;line-height:2.2486cqw">An event app that brings décor, vendors and bookings together in one place.</p><p class="fc-t fc-read" style="left:72.024%;top:76.224%;font-size:1.5330cqw;letter-spacing:0.4318cqw">UX design</p><p class="fc-t fc-read" style="left:72.024%;top:79.682%;font-size:1.5330cqw;letter-spacing:0.4318cqw">Mobile app</p><p class="fc-t fc-read" style="left:72.024%;top:83.137%;font-size:1.5330cqw;letter-spacing:0.4318cqw">READ ON</p><img class="fc-i " style="left:54.916%;top:8.190%;width:45.108%;height:91.880%" src="assets/fc/ee-flowers.webp" alt="" loading="lazy" decoding="async"><img class="fc-i " style="left:87.884%;top:83.789%;width:7.536%;height:10.566%" src="assets/fc/ee-stamp.webp" alt="" loading="lazy" decoding="async"><img class="fc-i " style="left:1.780%;top:20.740%;width:53.099%;height:71.370%" src="assets/fc/ee-phones.webp" alt="EventEase app screens" loading="lazy" decoding="async"></a>
+<a class="fc-card fc-parali" href="#work" data-project="parali" aria-label="Open The Parali Plan project" style="aspect-ratio:539.873/382.251"><img class="fc-i fc-paper" style="left:-2.964%;top:4.701%;width:104.964%;height:110.472%" src="assets/fc/pa-back.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i fc-paper" style="left:-2.001%;top:4.701%;width:104.964%;height:110.472%" src="assets/fc/pa-front.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><p class="fc-t fc-desc" style="left:65.364%;top:59.717%;width:19.6725%;font-size:1.6325cqw;line-height:2.2448cqw">Turning stubble burning into village craft livelihoods, with farmers paid for parali.</p><p class="fc-t fc-read" style="left:65.364%;top:76.187%;font-size:1.5281cqw;letter-spacing:0.4299cqw">Field research</p><p class="fc-t fc-read" style="left:65.364%;top:79.640%;font-size:1.5281cqw;letter-spacing:0.4299cqw">Service design</p><p class="fc-t fc-read" style="left:65.364%;top:83.093%;font-size:1.5281cqw;letter-spacing:0.4299cqw">READ ON</p><img class="fc-i " style="left:71.644%;top:88.795%;width:11.922%;height:5.976%" src="assets/fc/pa-i7.webp" alt="" loading="lazy" decoding="async"><img class="fc-i " style="left:84.190%;top:86.736%;width:7.448%;height:9.833%" src="assets/fc/pa-i8.webp" alt="" loading="lazy" decoding="async"><img class="fc-i fc-rings" style="left:18.378%;top:0.000%;width:67.055%;height:15.430%" src="assets/fc/rings-parali.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i " style="left:75.447%;top:15.199%;width:24.773%;height:84.842%" src="assets/fc/pa-i32.webp" alt="" loading="lazy" decoding="async"><img class="fc-i" style="left:80.495%;top:60.747%;width:22.183%;height:39.334%;transform:rotate(-5.33deg)" src="assets/fc/pa-i33.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i " style="left:78.994%;top:8.008%;width:21.211%;height:40.706%" src="assets/fc/pa-i35.webp" alt="" loading="lazy" decoding="async"><img class="fc-i " style="left:95.280%;top:7.997%;width:4.857%;height:37.961%" src="assets/fc/pa-i36.webp" alt="" loading="lazy" decoding="async"><p class="fc-t fc-title" style="left:50.762%;top:48.659%;width:44.455%;font-size:7.0200cqw;line-height:6.8566cqw">Parali Plan</p><div class="fc-diagram" style="left:9.076%;top:27.346%;width:42.241%;height:55.136%" aria-hidden="true"><img class="fc-i" style="left:12.708%;top:8.749%;width:37.672%;height:40.763%" src="assets/fc/pa-out1.svg" alt="" aria-hidden="true"><img class="fc-i" style="left:25.994%;top:23.126%;width:24.524%;height:26.536%" src="assets/fc/pa-act1.svg" alt="" aria-hidden="true"><img class="fc-i" style="left:51.280%;top:8.749%;width:37.672%;height:40.763%" src="assets/fc/pa-out2.svg" alt="" aria-hidden="true"><img class="fc-i" style="left:51.144%;top:23.126%;width:24.524%;height:26.536%" src="assets/fc/pa-act2.svg" alt="" aria-hidden="true"><img class="fc-i" style="left:51.280%;top:50.486%;width:37.672%;height:40.763%" src="assets/fc/pa-out3.svg" alt="" aria-hidden="true"><img class="fc-i" style="left:51.144%;top:50.340%;width:24.524%;height:26.536%" src="assets/fc/pa-act3.svg" alt="" aria-hidden="true"><img class="fc-i" style="left:22.635%;top:42.969%;width:36.534%;height:39.531%" src="assets/fc/pa-n8.webp" alt="" aria-hidden="true" loading="lazy"><img class="fc-i" style="left:10.327%;top:63.162%;width:35.342%;height:40.390%" src="assets/fc/pa-n90.webp" alt="" aria-hidden="true" loading="lazy"><p class="fc-t fc-wrapt fc-arch" style="top:32.098%;width:14.324%;font-size:0.7807cqw;line-height:1.3;color:#1f1e1b;text-align:center;left:30.759%">Paid craft work inside the village</p><p class="fc-t fc-wrapt fc-arch" style="top:21.271%;width:17.328%;font-size:0.9271cqw;line-height:1.3;color:#ffffff;text-align:center;left:19.948%">No need to migrate to cities to earn</p><p class="fc-t fc-wrapt fc-intb" style="top:2.752%;width:25.415%;font-size:1.0736cqw;line-height:1.3;color:#1f1e1b;text-align:left;left:0.000%">Employment generation in rural areas</p><p class="fc-t fc-wrapt fc-arch" style="top:33.408%;width:14.324%;font-size:0.7807cqw;line-height:1.3;color:#1f1e1b;text-align:center;left:56.574%">Stubble bought, not burnt</p><p class="fc-t fc-wrapt fc-arch" style="top:22.832%;width:17.328%;font-size:0.9271cqw;line-height:1.3;color:#ffffff;text-align:center;left:64.386%">Cleaner air and healthier soil</p><p class="fc-t fc-wrapt fc-intb" style="top:2.752%;width:25.415%;font-size:1.0736cqw;line-height:1.3;color:#1f1e1b;text-align:right;left:73.906%">Promote sustainability</p><p class="fc-t fc-wrapt fc-arch" style="top:61.340%;width:14.324%;font-size:0.7807cqw;line-height:1.3;color:#1f1e1b;text-align:center;left:56.574%">Skills and piece-rate income</p><p class="fc-t fc-wrapt fc-arch" style="top:69.354%;width:17.328%;font-size:0.9271cqw;line-height:1.3;color:#ffffff;text-align:center;left:64.386%">Women lead household welfare</p><span class="fc-key" style="left:44.131%;top:28.877%;font-size:0.6344cqw;letter-spacing:0.0761cqw;padding:0.1463cqw 0.3905cqw;border-radius:0.4879cqw">What we do</span><span class="fc-key" style="left:42.627%;top:14.623%;font-size:0.6344cqw;letter-spacing:0.0761cqw;padding:0.1463cqw 0.3905cqw;border-radius:0.4879cqw">What changes</span></div><p class="fc-t fc-intb fc-wrapt" style="left:40.699%;top:83.466%;width:10.278%;font-size:1.0449cqw;line-height:1.3583cqw;text-align:right;color:#1f1e1b">Women empowerment</p><p class="fc-t fc-intb fc-wrapt" style="left:10.187%;top:83.006%;width:10.278%;font-size:1.0449cqw;line-height:1.3583cqw;color:#1f1e1b">Contributing to exports &amp; GDP</p></a>
+<a class="fc-card fc-shifting" href="#project-spaces" data-project="spaces" aria-label="Open Spaces of Intent (Shifting Focus) project" style="aspect-ratio:552.809/394.991"><img class="fc-i fc-paper" style="left:-2.894%;top:5.527%;width:104.884%;height:109.410%" src="assets/fc/sf-back.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i fc-paper" style="left:-1.990%;top:5.527%;width:104.884%;height:109.410%" src="assets/fc/sf-front.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i fc-rings" style="left:17.769%;top:0.000%;width:67.241%;height:15.083%" src="assets/fc/rings-shifting.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><p class="fc-t fc-title" style="left:39.991%;top:43.723%;font-size:6.9246cqw;line-height:6.7635cqw">Shifting Focus</p><p class="fc-t fc-desc" style="left:72.520%;top:55.667%;width:19.7275%;font-size:1.6104cqw;line-height:2.2141cqw">How Hindu temple visitors drift, and non-coercive ways to shift behaviour.</p><p class="fc-t fc-read" style="left:72.683%;top:71.865%;font-size:1.5097cqw;letter-spacing:0.4252cqw">Human Behaviour</p><p class="fc-t fc-read" style="left:72.683%;top:75.245%;font-size:1.5097cqw;letter-spacing:0.4252cqw">Ethnography</p><p class="fc-t fc-read" style="left:72.683%;top:78.624%;font-size:1.5097cqw;letter-spacing:0.4252cqw">READ ON</p><img class="fc-i " style="left:77.995%;top:13.522%;width:22.050%;height:29.766%" src="assets/fc/sf-i9.webp" alt="" loading="lazy" decoding="async"><img class="fc-i " style="left:88.303%;top:84.741%;width:6.602%;height:9.240%" src="assets/fc/sf-i5.webp" alt="" loading="lazy" decoding="async"></a>
+<a class="fc-card fc-offspace" href="#work" data-project="offspace" aria-label="Open Offspace project" style="aspect-ratio:547.298/385.000"><img class="fc-i fc-paper" style="left:-2.923%;top:4.081%;width:104.867%;height:111.244%" src="assets/fc/os-back.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i fc-paper" style="left:-1.944%;top:4.081%;width:104.867%;height:111.244%" src="assets/fc/os-front.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i " style="left:88.851%;top:86.603%;width:6.697%;height:9.519%" src="assets/fc/os-stamp.webp" alt="" loading="lazy" decoding="async"><img class="fc-i fc-rings" style="left:17.476%;top:0.000%;width:68.199%;height:15.538%" src="assets/fc/rings-offspace.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><p class="fc-t fc-desc" style="left:70.395%;top:55.725%;width:20.0075%;font-size:1.6332cqw;line-height:2.2458cqw">A pause space for design students to recharge after long studio hours.</p><p class="fc-t fc-read" style="left:70.558%;top:68.494%;font-size:1.5311cqw;letter-spacing:0.4312cqw">Service design</p><p class="fc-t fc-read" style="left:70.558%;top:71.977%;font-size:1.5311cqw;letter-spacing:0.4312cqw">Wellbeing</p><p class="fc-t fc-read" style="left:70.558%;top:75.460%;font-size:1.5311cqw;letter-spacing:0.4312cqw">READ ON</p><p class="fc-t fc-dmsans" style="left:49.653%;top:43.883%;font-size:6.7605cqw;line-height:8.8197cqw;letter-spacing:1.3521cqw;color:#c0503a">offspace</p><i class="fc-i fc-dot" style="left:87.292%;top:43.883%;width:1.307%;height:1.857%" aria-hidden="true"></i><img class="fc-i " style="left:64.632%;top:7.197%;width:39.082%;height:62.413%" src="assets/fc/os-lamps.webp" alt="Woven cane pendant lamps" loading="lazy" decoding="async"><img class="fc-i " style="left:81.299%;top:19.969%;width:9.473%;height:6.733%" src="assets/fc/os-lamp-small.webp" alt="" loading="lazy" decoding="async"></a>
+<a class="fc-card fc-tourism" href="#project-adventuretourism" data-project="adventuretourism" aria-label="Open Adventure Tourism project" style="aspect-ratio:612.261/432.698"><img class="fc-i fc-paper" style="left:-2.613%;top:4.853%;width:104.247%;height:110.400%" src="assets/fc/tr-back.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i fc-paper" style="left:-1.633%;top:4.853%;width:104.247%;height:110.400%" src="assets/fc/tr-front.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i fc-rings" style="left:12.780%;top:0.000%;width:68.141%;height:15.484%" src="assets/fc/rings-tourism.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><p class="fc-t fc-title" style="left:44.956%;top:42.293%;width:28.419%;font-size:7.0231cqw;line-height:6.8598cqw">Tourism</p><p class="fc-t fc-desc" style="left:67.495%;top:54.542%;width:20.0075%;font-size:1.6332cqw;line-height:2.2458cqw">A UX case study on trust, safety and discoverability in adventure tourism.</p><p class="fc-t fc-read" style="left:67.658%;top:67.252%;font-size:1.5107cqw;letter-spacing:0.4256cqw">UX research</p><p class="fc-t fc-read" style="left:67.658%;top:70.719%;font-size:1.5107cqw;letter-spacing:0.4256cqw">Trust &amp; safety</p><p class="fc-t fc-read" style="left:67.658%;top:74.186%;font-size:1.5107cqw;letter-spacing:0.4256cqw">READ ON</p><img class="fc-i " style="left:71.337%;top:8.551%;width:28.583%;height:47.608%" src="assets/fc/tr-paraglider.webp" alt="Paraglider sticker" loading="lazy" decoding="async"><img class="fc-i " style="left:76.315%;top:87.128%;width:6.533%;height:9.244%" src="assets/fc/tr-logo-a.webp" alt="" loading="lazy" decoding="async"><img class="fc-i " style="left:84.318%;top:86.897%;width:6.696%;height:9.475%" src="assets/fc/tr-logo-b.webp" alt="" loading="lazy" decoding="async"></a>
+<div class="fc-card fc-audit" role="img" aria-label="Design Audit for WeHear" style="aspect-ratio:557.805/398.770"><img class="fc-i fc-paper" style="left:-2.868%;top:5.672%;width:104.757%;height:109.373%" src="assets/fc/da-back.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i fc-paper" style="left:-1.888%;top:5.672%;width:104.757%;height:109.373%" src="assets/fc/da-front.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i fc-rings" style="left:16.496%;top:0.000%;width:68.199%;height:15.290%" src="assets/fc/rings-audit.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i " style="left:87.871%;top:86.817%;width:6.696%;height:9.367%" src="assets/fc/da-stamp.webp" alt="" loading="lazy" decoding="async"><img class="fc-i " style="left:78.398%;top:86.361%;width:7.513%;height:10.510%" src="assets/fc/da-wehear.webp" alt="WeHear logo" loading="lazy" decoding="async"><p class="fc-t fc-title" style="left:43.445%;top:42.724%;font-size:7.0231cqw;line-height:6.8597cqw">Design Audit</p><p class="fc-t fc-desc" style="left:70.396%;top:54.831%;width:20.0075%;font-size:1.6331cqw;line-height:2.2459cqw">A design audit of the WeHear experience.</p><p class="fc-t fc-read" style="left:70.559%;top:67.397%;font-size:1.5312cqw;letter-spacing:0.4312cqw">Design audit</p><p class="fc-t fc-read" style="left:70.559%;top:70.825%;font-size:1.5312cqw;letter-spacing:0.4312cqw">WeHear</p><p class="fc-t fc-read" style="left:70.559%;top:74.251%;font-size:1.5312cqw;letter-spacing:0.4312cqw">READ ON</p></div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section class="wrap section about" id="about">
-    <div>
-      <div class="eyebrow">02 · A little about me</div>
-      <h2>Curious about<br/>what makes us<br/><span style="background:var(--ochre);padding:0 5px">do what we do.</span></h2>
-    </div>
-    <div>
-      <p class="about-copy">I’m interested in the <em>invisible layers</em> shaping everyday experiences — behaviour, rituals, relationships, environments and systems.</p>
+  <!-- Curious about me -->
+  <section class="wrap section" id="about" aria-labelledby="about-title">
+    <div class="section-head"><div><h2 id="about-title">Curious about me</h2></div></div>
+    <div class="cu-grid">
+      <div class="cu-copy">
+      <p class="about-copy">I’m interested in the <em>invisible layers</em> shaping everyday experiences, behaviour, rituals, relationships, environments and systems.</p>
       <p class="about-details">My approach begins with observation and listening. I use research to make sense of complexity, identify opportunities and explore how design can shift an experience for the better. I’m currently pursuing my master’s at the National Institute of Design, Gandhinagar.</p>
-      <div class="tag-row">
-        <span class="tag">Ethnography</span>
-        <span class="tag">Synthesis</span>
-        <span class="tag">Systems thinking</span>
-        <span class="tag">Prototyping</span>
-        <span class="tag">Spatial experiences</span>
+      <p class="about-lenses">Ethnography · Synthesis · Systems thinking · Prototyping · Spatial experiences</p>
+      <ul class="edu-row" aria-label="Education"><li class="edu-item"><span class="edu-logo"><img src="assets/edu/nid.webp" alt="National Institute of Design" loading="lazy" decoding="async"></span><span class="edu-year">2025-2028</span><span class="edu-desc"><span class="edu-deg">M.Des</span> (Strategic Design Management)</span></li><li class="edu-item"><span class="edu-logo"><img src="assets/edu/iitd.webp" alt="Indian Institute of Technology Delhi" loading="lazy" decoding="async"></span><span class="edu-year">2023-2024</span><span class="edu-desc">(Design Thinking for User Experience)</span></li><li class="edu-item"><span class="edu-logo"><img src="assets/edu/nift.webp" alt="National Institute of Fashion Technology" loading="lazy" decoding="async"></span><span class="edu-year">2016-2020</span><span class="edu-desc"><span class="edu-deg">B.Des</span> (Textile Design)</span></li><li class="edu-item"><span class="edu-logo"><img src="assets/edu/dps.webp" alt="Delhi Public School" loading="lazy" decoding="async"></span><span class="edu-year">2014-2016</span><span class="edu-desc"><span class="edu-deg">PCM</span> (Senior Secondary Education)</span></li></ul>
+      </div>
+      <div class="cu-diagram" role="img" aria-label="Create: make your own work. Consume: support other’s work. Curate: share other’s work. Collect: look at other’s work on the web." style="aspect-ratio:470/287"><span class="cu-pill" style="left:0.000%;top:0.000%;width:96.619%;height:65.424%;border-radius:19.9753cqw" data-n="collect"></span><span class="cu-pill" style="left:1.520%;top:3.556%;width:70.782%;height:58.313%;border-radius:17.8040cqw" data-n="curate"></span><span class="cu-pill" style="left:2.823%;top:7.822%;width:48.201%;height:49.779%;border-radius:15.1985cqw" data-n="consume"></span><img class="fc-i " style="left:5.428%;top:16.356%;width:19.975%;height:32.712%" src="assets/fc/cu-circle.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><p class="fc-t cu-label" style="left:10.693%;top:29.423%;font-size:2.9311cqw;letter-spacing:0.2171cqw">CREATE</p><p class="fc-t cu-label" style="left:31.700%;top:29.423%;font-size:2.9311cqw;letter-spacing:0.2171cqw">CONSUME</p><p class="fc-t cu-label" style="left:55.040%;top:29.423%;font-size:2.9311cqw;letter-spacing:0.2171cqw">CURATE</p><p class="fc-t cu-label" style="left:76.536%;top:29.423%;font-size:2.9311cqw;letter-spacing:0.2171cqw">COLLECT</p><img class="fc-i " style="left:13.136%;top:38.934%;width:1.520%;height:30.223%" src="assets/fc/cu-create.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i " style="left:37.236%;top:36.090%;width:0.868%;height:33.068%" src="assets/fc/cu-consume.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i " style="left:60.469%;top:37.868%;width:1.737%;height:31.290%" src="assets/fc/cu-curate.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fc-i " style="left:84.135%;top:37.868%;width:3.474%;height:31.290%" src="assets/fc/cu-collect.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><p class="fc-t cu-cap" style="left:5.428%;top:73.957%;font-size:3.0398cqw;line-height:3.9083cqw">MAKE<br>your own<br>WORK</p><p class="fc-t cu-cap" style="left:28.877%;top:73.957%;font-size:3.0398cqw;line-height:3.9083cqw">SUPPORT<br>other’s<br>WORK</p><p class="fc-t cu-cap" style="left:58.189%;top:73.957%;font-size:3.0398cqw;line-height:3.9083cqw">SHARE<br>other’s<br>WORK</p><p class="fc-t cu-cap" style="left:82.072%;top:73.957%;font-size:3.0398cqw;line-height:3.9083cqw">LOOK at<br>OTHER’S WORK<br>on the<br>WEB</p></div>
+    </div>
+  </section>
+
+  <!-- Field work -->
+  <section class="wrap section" id="field-work" aria-labelledby="field-work-title">
+    <div class="fw-grid">
+      <div class="section-head"><div><h2 id="field-work-title">Field work</h2></div></div>
+      <div class="fw-cards" aria-label="Field work">
+<a class="fc-card fc-case" href="#field-work" data-project="molela" aria-label="Open case study: Molela Teracotta" style="aspect-ratio:260.964/332.451"><span class="fc-board" aria-hidden="true"></span><p class="fc-t fc-note" style="left:69.213%;top:90.540%;font-size:10.8823cqw;line-height:7.4466cqw">jan’26</p><img class="fc-i " style="left:6.319%;top:11.337%;width:87.542%;height:75.016%" src="assets/fc/cc-molela.webp" alt="Terracotta plaque from the Molela craft study" loading="lazy" decoding="async"><span class="fc-band" aria-hidden="true"></span><p class="fc-t fc-label" style="right:5.769%;top:15.341%;font-size:4.0709cqw;letter-spacing:0.7606cqw">Molela Teracotta</p></a>
+<a class="fc-card fc-case" href="#field-work" data-project="adobenext" aria-label="Open certificate: Adobe Next Campus Days" style="aspect-ratio:260.964/332.451"><span class="fc-board" aria-hidden="true"></span><p class="fc-t fc-note" style="left:70.477%;top:90.540%;font-size:10.8823cqw;line-height:7.4466cqw">Aug’26</p><img class="fc-i " style="left:7.265%;top:12.333%;width:87.542%;height:75.016%" src="assets/fc/cc-adobe.webp" alt="Adobe Next" loading="lazy" decoding="async"><span class="fc-band" aria-hidden="true"></span><p class="fc-t fc-label" style="right:9.375%;top:15.341%;font-size:4.0709cqw;letter-spacing:0.7606cqw">Adobe Next</p></a>
+<a class="fc-card fc-case" href="#field-work" data-project="civil-hospital" aria-label="Open project: Civil Hospital" style="aspect-ratio:260.964/332.451"><span class="fc-board" aria-hidden="true"></span><p class="fc-t fc-note" style="left:70.477%;top:90.540%;font-size:10.8823cqw;line-height:7.4466cqw">sept’26</p><img class="fc-i " style="left:6.898%;top:10.227%;width:87.542%;height:75.016%" src="assets/fc/cc-civil.webp" alt="Gloved hand and protective gear inside Civil Hospital Ahmedabad" loading="lazy" decoding="async"><span class="fc-band" aria-hidden="true"></span><p class="fc-t fc-label" style="right:5.489%;top:15.341%;font-size:4.0709cqw;letter-spacing:0.7606cqw">Civil Hospital</p><img class="fc-i fc-clip" style="left:11.646%;top:-9.325%;width:15.040%;height:25.267%" src="assets/fc/paperclip.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"></a>
+<a class="fc-card fc-case" href="#field-work" data-project="zomato" aria-label="Open case study: Zomato Delivery" style="aspect-ratio:260.964/332.451"><span class="fc-board" aria-hidden="true"></span><p class="fc-t fc-note" style="left:70.738%;top:90.540%;font-size:10.8823cqw;line-height:7.4466cqw">june’22</p><img class="fc-i " style="left:6.514%;top:11.129%;width:87.542%;height:75.016%" src="assets/fc/cc-zomato.webp" alt="Zomato delivery partner on a motorbike in city traffic" loading="lazy" decoding="async"><span class="fc-band" aria-hidden="true"></span><p class="fc-t fc-label" style="right:6.117%;top:15.341%;font-size:4.0709cqw;letter-spacing:0.7606cqw">Zomato Delivery</p></a>
       </div>
     </div>
   </section>
 
   <!-- Contact / Footer Section -->
-  <section class="wrap footer" id="contact">
-    <div class="eyebrow">03 · Have a question, idea or collaboration?</div>
-    <h2>Let’s make<br/>meaningful things.</h2>
-    <a class="pill dark" href="mailto:hello@dharviprajapati.com">Get in touch ↗</a>
-    <div class="social-logos-bottom" aria-label="Social links">
-      <a href="https://www.behance.net/dharviprajapati" target="_blank" rel="noopener noreferrer" aria-label="Behance"><img src="assets/behance-social.png" alt="Behance"/></a>
-      <a href="mailto:hello@dharviprajapati.com" aria-label="Email"><img src="assets/email-social.png" alt="Email"/></a>
-      <a href="https://www.linkedin.com/in/dharvi-prajapati/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/linkedin-social.png" alt="LinkedIn"/></a>
+  <section class="wrap" id="contact-section">
+  <div class="footer" id="contact">
+    <h2>Let’s make<br/><span class="footer-hl">meaningful things.</span></h2>
+    <div class="contact-links" aria-label="Contact and social links">
+      <a class="contact-link" aria-label="LinkedIn" href="https://www.linkedin.com/in/dharvi-prajapati/" target="_blank" rel="noopener noreferrer"><img class="contact-icon" src="assets/contact-linkedin.png" alt="" aria-hidden="true" draggable="false"/></a>
+      <a class="contact-link" aria-label="Behance" href="https://www.behance.net/dharviprajapati" target="_blank" rel="noopener noreferrer"><img class="contact-icon" src="assets/contact-behance.png" alt="" aria-hidden="true" draggable="false"/></a>
+      <a class="contact-link" aria-label="Email" href="mailto:dharviprajapati1998@gmail.com"><img class="contact-icon" src="assets/contact-email.png" alt="" aria-hidden="true" draggable="false"/></a>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Dharvi Prajapati</span>
       <span>Made with curiosity &amp; intention</span>
       <a href="#top">Back to top ↑</a>
     </div>
+  </div>
   </section>
 </main>
 
@@ -796,7 +1092,7 @@ button { font: inherit; }
   </div>
 </div>
 
-<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"><svg viewBox="-11 -11 22 22" aria-hidden="true" focusable="false"><path d="M0-8.5V8.5M-7.36-4.25L7.36 4.25M-7.36 4.25L7.36-4.25" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></div>
 
 <script>
 // Read Progress & Tag Flip
@@ -812,12 +1108,28 @@ document.querySelectorAll('.hanging-tag-flip').forEach(card => {
 // Project Modals
 (() => {
   const projects = {
+    molela: {
+      kicker: 'Case study',
+      title: 'The Craft of Molela Terracotta Plaques',
+      body: '',
+      image: null,
+      pdf: null,
+      html: "<style>.pp{position:relative;width:100%;background:#fff}.pp picture{display:block}.pp picture:not(:last-of-type){margin-bottom:-1px}.pp-tile{display:block;width:100%;height:auto}.pp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:normal}<\/style><div class=\"pp\"><picture><source type=\"image/avif\" srcset=\"assets/case/molela/s1-1200.avif 1200w, assets/case/molela/s1-2400.avif 2400w, assets/case/molela/s1-3508.avif 3508w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/molela/s1-2400.webp\" srcset=\"assets/case/molela/s1-1200.webp 1200w, assets/case/molela/s1-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3508\" height=\"1497\" loading=\"lazy\" decoding=\"async\" alt=\"The Craft of Molela Terracotta Plaques: research poster\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/molela/s2-1200.avif 1200w, assets/case/molela/s2-2400.avif 2400w, assets/case/molela/s2-3508.avif 3508w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/molela/s2-2400.webp\" srcset=\"assets/case/molela/s2-1200.webp 1200w, assets/case/molela/s2-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3508\" height=\"1745\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/molela/s3-1200.avif 1200w, assets/case/molela/s3-2400.avif 2400w, assets/case/molela/s3-3508.avif 3508w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/molela/s3-2400.webp\" srcset=\"assets/case/molela/s3-1200.webp 1200w, assets/case/molela/s3-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3508\" height=\"1719\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><div class=\"pp-sr\"><h2>The Craft of Molela Terracotta Plaques<\/h2><p>Craftscapes: Rooted in Heritage, Shaping the Future. National Institute of Design.<\/p><p>With Dinesh Chandra &amp; Kailash Devi. Anchored by Sonal Chauhan. Supporting Staff Jashvantsinh Chauhan.<\/p><p>Dharvi Prajapati, Strategic Design Management ’25. dharvi_p@nid.edu<\/p><h3>Experience of the craft?<\/h3><p>Every day in the workshop unfolded as a new experience. The artisans became the foundation of our two-week journey, guiding us from crafting miniature tiles to developing expansive product ideas and value additions. This process pushed me to think about how an added layer of thought can deepen engagement with the craft. Over these two weeks, I learned the quiet power of persistence and patience, understanding that results take time, and what matters most is simply showing up, every day.<\/p><h3>Craft nuances &amp; how do I see this craft now?<\/h3><p>Clay, in its formless state, holds little value. Yet through hard work and patience, it transforms into a masterpiece. This journey has taught me an essential life lesson: that, much like clay, our lives are shaped by persistence and patience, where consistent effort gives form, meaning, and purpose. The craft to me has become a way to be more expressive &amp; playful.<\/p><h3>Explorations<\/h3><h3>Theme: Jharoka<\/h3><p>This lamp reinterprets the traditional jharokha as a compact lighting form, crafted in natural terracotta clay. Architectural arches and perforated details allow light to softly diffuse, creating patterned shadows. Rooted in heritage yet minimal in expression, the design blends craft, warmth, and contemporary living.<\/p><\/div><\/div>",
+    },
+    zomato: {
+      kicker: 'Case study',
+      title: 'Food & Beverage — UX Case Study',
+      body: '',
+      image: null,
+      pdf: null,
+      html: "<style>.pp{position:relative;width:100%;background:#fff}.pp picture{display:block}.pp picture:not(:last-of-type){margin-bottom:-1px}.pp-tile{display:block;width:100%;height:auto}.pp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:normal}<\/style><div class=\"pp\"><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s01-1200.avif 1200w, assets/case/zomato/s01-2400.avif 2400w, assets/case/zomato/s01-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s01-2400.webp\" srcset=\"assets/case/zomato/s01-1200.webp 1200w, assets/case/zomato/s01-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"3081\" loading=\"lazy\" decoding=\"async\" alt=\"UX case study: Food & Beverage, a delivery partner journey (Zomato)\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s02-1200.avif 1200w, assets/case/zomato/s02-2400.avif 2400w, assets/case/zomato/s02-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s02-2400.webp\" srcset=\"assets/case/zomato/s02-1200.webp 1200w, assets/case/zomato/s02-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"3492\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s03-1200.avif 1200w, assets/case/zomato/s03-2400.avif 2400w, assets/case/zomato/s03-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s03-2400.webp\" srcset=\"assets/case/zomato/s03-1200.webp 1200w, assets/case/zomato/s03-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"3522\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s04-1200.avif 1200w, assets/case/zomato/s04-2400.avif 2400w, assets/case/zomato/s04-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s04-2400.webp\" srcset=\"assets/case/zomato/s04-1200.webp 1200w, assets/case/zomato/s04-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"3459\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s05-1200.avif 1200w, assets/case/zomato/s05-2400.avif 2400w, assets/case/zomato/s05-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s05-2400.webp\" srcset=\"assets/case/zomato/s05-1200.webp 1200w, assets/case/zomato/s05-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"3492\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s06-1200.avif 1200w, assets/case/zomato/s06-2400.avif 2400w, assets/case/zomato/s06-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s06-2400.webp\" srcset=\"assets/case/zomato/s06-1200.webp 1200w, assets/case/zomato/s06-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"3981\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s07-1200.avif 1200w, assets/case/zomato/s07-2400.avif 2400w, assets/case/zomato/s07-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s07-2400.webp\" srcset=\"assets/case/zomato/s07-1200.webp 1200w, assets/case/zomato/s07-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"3000\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s08-1200.avif 1200w, assets/case/zomato/s08-2400.avif 2400w, assets/case/zomato/s08-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s08-2400.webp\" srcset=\"assets/case/zomato/s08-1200.webp 1200w, assets/case/zomato/s08-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"3792\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s09-1200.avif 1200w, assets/case/zomato/s09-2400.avif 2400w, assets/case/zomato/s09-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s09-2400.webp\" srcset=\"assets/case/zomato/s09-1200.webp 1200w, assets/case/zomato/s09-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"3192\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s10-1200.avif 1200w, assets/case/zomato/s10-2400.avif 2400w, assets/case/zomato/s10-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s10-2400.webp\" srcset=\"assets/case/zomato/s10-1200.webp 1200w, assets/case/zomato/s10-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"4182\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s11-1200.avif 1200w, assets/case/zomato/s11-2400.avif 2400w, assets/case/zomato/s11-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s11-2400.webp\" srcset=\"assets/case/zomato/s11-1200.webp 1200w, assets/case/zomato/s11-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"3561\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s12-1200.avif 1200w, assets/case/zomato/s12-2400.avif 2400w, assets/case/zomato/s12-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s12-2400.webp\" srcset=\"assets/case/zomato/s12-1200.webp 1200w, assets/case/zomato/s12-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"2940\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/zomato/s13-1200.avif 1200w, assets/case/zomato/s13-2400.avif 2400w, assets/case/zomato/s13-3600.avif 3600w\" sizes=\"min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/zomato/s13-2400.webp\" srcset=\"assets/case/zomato/s13-1200.webp 1200w, assets/case/zomato/s13-2400.webp 2400w\" sizes=\"min(98vw,1900px)\" width=\"3600\" height=\"3692\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><div class=\"pp-sr\"><h2>Food &amp; Beverage: UX case study of a Zomato delivery partner<\/h2><h3>Problem statement<\/h3><p>Daily work routine of a delivery partner, considering his compensation, goals towards future career and family perspective, and social life from the customer dealing while delivering his orders.<\/p><h3>Demographics<\/h3><p>Mr. Raj, delivery agent at Zomato. Age 29, Noida, 10th pass. Personality: introvert, analytical, time rich, organised, active.<\/p><h3>A day in their life<\/h3><p>Raj starts his day early in the morning, preparing himself and his motorbike for the day's deliveries. He logs into the delivery app and plans his route based on the orders received. Throughout the day, Raj navigates through traffic, picking up orders from restaurants and delivering them to customers' doorsteps. He remains attentive to customer instructions and takes necessary precautions for contactless deliveries amid the ongoing pandemic. Raj's day ends late in the evening after completing his last delivery, and he looks forward to resting and spending quality time with his family.<\/p><h3>Goals<\/h3><p>To achieve timely delivery. To deliver the parcel or food in the right condition. To get positive feedback from customers. To achieve a 5 star rating in delivery and other aspects. To have a good customer interaction.<\/p><h3>Motivations<\/h3><p>He gets motivated when his ratings are good, as it increases his credibility at work. Regular incentives and tips help him manage his finances. He feels content and fulfilled after delivering the food to his customers. These factors help him support his family and achieve his personal, professional and financial goals.<\/p><h3>Frustrations<\/h3><p>Time taken in commute from one location to the other, constantly. Delay in order handover by the restaurant. Unsuitable weather conditions, especially when it rains, as it hinders delivery efficiency. Uncooperative customers. Delay in COD payments by customers. Delivering in traffic.<\/p><h3>User journey<\/h3><p>Phase 1. Doing: notification through the delivery app. Thinking: accept the order or skip it based on order value; calculating surge charge and overall earning from the order. Feeling: charged up, ready to move.<\/p><p>Phase 2. Doing (mapping route): fuel and battery check; route check for shortcuts, road blocks and traffic; weather check. Thinking: finding the shortest way to the restaurant. Feeling: anxious and restless.<\/p><p>Phase 3. Doing (waiting at the restaurant to collect the order): reading delivery instructions; nagging and pushing the restaurant to expedite the process. Thinking: waiting time; calculating and planning the day’s budget. Feeling: chaotic and impatient.<\/p><p>Phase 4. Doing: reaching the location and communicating with the customer. Thinking: least response time, no hurdle, location constraint. Feeling: anxious and adaptive.<\/p><p>Phase 5. Doing: handover and payment collection by UPI or cash. Thinking: timely delivered, order rating, next order, incentive or tip. Feeling: sense of achievement.<\/p><h3>Problem statements<\/h3><p>Problem statement 1. Define: the delivery partner is at the delivery location and the customer is not picking up, while the order is on COD. Empathise: finding the easiest way to connect to the customer, and to hand over the order without it being damaged or spilled. Ideate: inform customer care and find alternatives to connect around (society guard, neighbours).<\/p><p>Problem statement 2. Define: the restaurant is taking time to hand over the order. Empathise: keeping the customer in the loop for the delay in delivery, being compensated for the delay, and using that time for refreshments in a waiting area provided by restaurants. Ideate: notify the customer of the delay of the order from the app’s side.<\/p><p>Problem statement 3. Define: assign multiple orders to the same delivery person for the same locality. Empathise: save time and fuel on one delivery journey. Ideate: getting notified of additional orders to pick up and deliver in the same area; acceptance; mapping (A-B, B-C, C-D); increase in overall efficiency (income, time and fuel).<\/p><h3>Low fidelity wireframes<\/h3><p>Hand-drawn phone screens for the delivery partner app: order screen, acceptance screen, map view, pickup screen, delivery details screen, delayed pickup screen, drop-off screen, and rating and feedback screen. Annotations include: should be bold; only on prepaid orders; user gets notified; calling the customer.<\/p><h3>Thank you<\/h3><\/div><\/div>",
+    },
     temples: {
       kicker: '01 / Design research · Behaviour change',
       title: 'Human Behaviour & Strategies | Temples',
       body: 'How might we activate non-engaged spaces in a temple to encourage meaningful visitor engagement and enhance the overall temple experience? Over five weeks, the team visited 12 Hindu temples around Gandhinagar and Ahmedabad and recorded 186 behaviours through slow ethnography, observation logs, photo documentation and spatial behaviour mapping.',
-      image: 'assets/human-behaviour-cover.png',
-      pdf: 'assets/Human%20Behavior%20A0%20Final%20submission.pdf'
+      image: 'assets/project-temples.webp',
+      pdf: null
     },
     offspace: {
       kicker: '02 / Service design · Wellbeing',
@@ -826,19 +1138,52 @@ document.querySelectorAll('.hanging-tag-flip').forEach(card => {
       image: null,
       pdf: null
     },
+    adobenext: {
+      kicker: 'Certificate',
+      title: 'Adobe NEXT Campus Days — Certificate of Participation',
+      body: '',
+      image: null,
+      pdf: null,
+      html: "<style>.pp{position:relative;width:100%;max-width:1100px;margin:0 auto;background:#fff}.pp-tile{display:block;width:100%;height:auto;max-height:92vh;object-fit:contain}</style><div class=\"pp\"><img class=\"pp-tile\" src=\"assets/adobe-next-certificate.webp\" width=\"1714\" height=\"1216\" alt=\"Adobe NEXT Campus Days certificate of participation awarded to Dharvi Prajapati, NID Ahmedabad, September 9, 2026\" loading=\"lazy\" decoding=\"async\"></div>"
+    },
     'civil-hospital': {
       kicker: '03 / Service design · Healthcare',
       title: 'Seeing Care Better — Civil Hospital Ahmedabad',
       body: 'A design-research project focused on observing the patient journey and identifying opportunities to reduce time per patient and improve the overall care experience across the hospital building.',
-      image: 'assets/seeing-care-better-cover.png',
+      image: 'assets/project-civil-hospital.webp',
       pdf: null
     },
+    spaces: {
+      kicker: '',
+      title: '',
+      body: '',
+      image: null,
+      pdf: null,
+      html: "<style>.pp{position:relative;width:100%;background:#fff}.pp-tile{display:block;width:100%;height:auto}.pp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:normal}</style><div class=\"pp\"><img class=\"pp-tile\" src=\"assets/project-spaces.webp\" alt=\"\"><img class=\"pp-tile\" src=\"assets/project-spaces-2-v2.webp\" alt=\"\"><img class=\"pp-tile\" src=\"assets/project-spaces-table.webp\" width=\"1394\" height=\"310\" loading=\"lazy\" decoding=\"async\" alt=\"Behaviour table: gender and non-engaging activities for P1 to P66\"><img class=\"pp-tile\" src=\"assets/project-spaces-3-v2.webp\" alt=\"\"><img class=\"pp-tile\" src=\"assets/project-spaces-4.webp\" alt=\"\"><div class=\"pp-sr\">Shifting Focus<br>Mapping roots of behavioural deviance in a hindu religious temple to design framework for<br>non-coercive behaviour change<br>12<br>Temples scanned around Ahmedabad and Gandhinagar to understand<br>the deviancies in people behavior in its premises<br>186+<br>Behaviours observed, during different hours of the day<br>Defining purpose of a mandir : Secondary Research : Temple Behaviour mapping<br>Primary Functions<br>Knowledge Transfer<br>Community Building<br>Healing &amp; Mental Wellness<br>Guiding People Towards Good Morals<br>Preservation of Art, Culture &amp; History<br>Establishing Religious Identity<br>Core Function<br>Pilgrimage<br>Trade &amp; Economic Activity<br>Connecting with the Divine<br>Power<br>Extended Functions<br>Political Agenda<br>Tourism<br>Key Stakeholders Shelter to the Needy<br>Primary Stakeholders<br> Secondary Stakeholders<br> Tertiary Stakeholders<br>Devotees &amp; Visitors<br> Vendors<br> Beggars<br>Pujari Security &amp; Maintaince Staff Stray Animals<br>Our observation : Primary Research methodology, Planning primary research plan<br>We visited 12 Hindu religious temples around Gandhinagar &amp; Ahmedabad to understand how various stakeholders behave inside the mandir premises, their roles and how do they interact<br>with the space through slow ethnography. After an initial observation spanning a week, we recorded 186 behaviours exhibited inside the space using observation logs, photo documentation<br>and spatial behaviour mapping. We categorize behaviors to transform a chaotic stream of human actions into structured data patterns.<br>Spiritual Social &amp; Culture Spatial Transactional Sensory<br>Spiritual Immersion Social Interaction Space Utilization Followership Hygiene<br>Ritual Routines Social Norms Movement patterns Offerings Distractions<br>Therapeutic Heirarchy Gathering Zones Vendor Interactions Sensory triggers<br>Vow Fulfillment Cultural Influence Profane boundaries Educational modes Crowd feel<br>Meditation &amp; Chanting Volunteering Desire paths Acoustics<br>Enforcements Surveillance &amp; Monitoring Tactile Interactions<br>Signages<br>Safety &amp; Risks<br>Recreational<br>Spatial Mapping : Panchdev Mandir, Gandhinagar<br>Spatial mapping was used to document behaviours within the mandir premises by recording the type of activity, its location, and the duration of stay. This helped identify how different spatial<br>conditions influence user behaviour, revealing where people pause, interact, or simply pass through, and highlighting patterns of engagement within the space.<br>These insights help uncover spatial opportunities where design interventions can be strategically introduced to enhance user experience and activate underutilized areas while respecting the<br>cultural context of the mandir.<br>48+<br>Observed behaviours at Panchdev Mandir, Gandhinagar, revealed variations in visitor activities and<br>crowd patterns across different times of the day, with distinct differences between weekdays and<br>weekends, alongside recurring groups that gathered daily.<br>Behaviours were systematically documented using time-stamped observations, recording the gender<br>of participants, duration and frequency of engagement, intervals between interactions, and whether<br>activities occurred individually or as part of a group<br>Engaged Non Engaged<br>Enhance Behaviour<br> Eliminate Behaviour<br> Antecedent Consequence<br>1 Voluntary visitor participation in temple upkeep (helping 1 Elevated voice levels and loud conversations within the Visitors gather in shaded Others are disturbed, but<br>with crowd control, assisting other visitors in way- courtyards to rest and talk. nobody corrects it, so it<br>inner and outer mandir premises<br>No cue for quiet continues.<br>finding etc.)<br>2 Dim, secluded spot. No Privacy, closeness and the<br>2 Visitors sponsoring Annadaan/prasad, bringing food to Showing PDA (public display of affection) holding hands,<br>guardian. No safe place thrill of the taboo. Sacred<br>distribute, offering food to other visitors or the needy in hugging or engaging in intimate behaviour elsewhere. atmosphere suffers.<br>the temple premises<br>3 3 Mobile phone use inside temple premises that disrupts Waiting in a low-activity Entertainment or relief from<br>Encouraging devotees to engage in devotional &quot;bhajan<br>the sanctity (taking calls, letting phone ring, speaking zone. Phone in hand, calls waiting. Sound and<br>and kirtan&quot; to deepen spiritual immersion and notifications arrive. attention disrupt others.<br>loudly, scrolling, and watching videos)<br>4 Need for clean drinking Need is met, which<br>Filling their water bottles or cans for commercial food<br>water The temple offers reinforces the visit.<br>cart operations and personal use<br>an accessible source.<br>5 Pending work after office Calm and focus. The space<br>People working on their office laptops to complete<br>hours. A quiet, shaded, becomes a workplace ease<br>pending work tasks even after office hours<br>seated spot. of access.<br>6 Arrival by vehicle. Need to Smooth entry. Attention<br>Occupied with parking related activities, focusing on<br>find access and a free stays on logistics at the<br>vehicle access and parking<br>parking spot. threshold<br>Intimate PDA<br> Performative PDA Emotional Disruption<br>Hugging, kissing, hand-holding in an Filming oneself or others for social media, Laughing loudly, Overt emotional<br>affectionate (non-devotional) sense, posing in front of deities, seeking attention performances that disturb the sacred<br>physical closeness between partners. rather than devotion atmosphere.<br>Holding Hands Leaning over Kissing Putting legs Hugging for long Holding waist Leaning towards<br>each other over each other period of time each other<br>Drivers<br>Temple seen as a casual public space, not Low surveillance, no authority figures<br>a sacred one<br>Dim, shaded, secluded privacy pockets<br>Taboo creates a thrill<br>Low footfall, other couples nearby<br>Media and dating culture shape a modern<br>identity<br>No safe alternative places for couples<br>Motivational Reactive<br>Executive Habits<br>Choosing the temple as a free, acceptable Returning to the same quiet spot and time<br>meeting place<br>Learned from peers, this is where couples go<br>Weighing risk of being seen against<br>Closeness treated as normal in public<br>closeness<br>Enablers<br>Low lit space Secluded space Low footfall space Far away space Low surveillance<br>Less observed areas,<br> Unmaintained landscaping, The space is not on a main Visual cues or signage often Absence of CCTV cameras,<br>Shadows becomes more high hedges, or dense trees, walking route, Spaces decrease, Spots located at lighting, or signage<br>prominent, L-shaped Often found behind without tasks, rituals, or the boundaries, Fewer indicating surveillance, Even<br>corridors or sharp turns buildings services often remain people pass through the if cameras exist, they may<br>where you cannot see unused, If only a few people space regularly, Multiple be poorly placed or not<br>what is ahead, Improperly are present, visitors may ways to enter or exit obvious, Security staff,<br>placed lights that &quot;blind&quot; feel too visible or awkward, without passing through the guards, or responsible<br>cameras The area may not have a premises<br> figures are rarely present,<br>or people, Insufficient or clear reason to visit Areas where coverage is<br>broken lighting, Peripheral obstructed, or poorly<br>vision becomes weaker<br> maintained.<br>1 2 3 4 5<br>Makes it impossible to Creates a private &amp; False sense of social Distance provides a Sense of temporary<br>identify faces or intimate space<br> norms become &quot;buffer zone&quot;<br> ownership of the<br>actions<br> relaxed<br> space<br>Now have a neutral excuse to use the space Snack kiosks, water stations, charging<br>points, study friendly tables<br>More people for the same purpose<br>More frequent movie screenings<br>It becomes a new space to explore, you<br>can stargaze while you watch movie More social hooks beyond the movie<br>It feels awkward to enter or leave the space<br>Create better &quot;sound stage&quot; effect<br>Being assumed to be meeting<br>someone romantically<br>Fear of administrative trouble<br>Designing for Behaviour Change : The three-stage progression Framework<br>2 3<br>Presence 1 Volunteering<br>Drawing people into the space Community ownership of the space<br>Community as outcome, not means : The framework<br>creates conditions in which community ownership<br>emerges naturally, it is not engineered or recruited.<br>Engagement<br>Giving people a reason to stay<br>Activation over surveillance : Crowd programming creates<br>social density that surveils itself.<br>Additive, not subtractive : The framework works by addition<br>rather than by erasure or restriction.<br>Displacement over prohibition : The framework removes the<br>conditions with meaningful alternatives.<br>Enrichment over imposition : Every intervention adds cultural<br>or social value. It creates enrichment, not constrains.</div></div>"
+    },
+    eventease: {
+      kicker: '',
+      title: '',
+      body: '',
+      image: null,
+      pdf: null,
+      html: "<style>.pp{position:relative;width:100%;background:#fff}.pp picture{display:block}.pp picture:not(:last-of-type){margin-bottom:-1px}.pp-tile{display:block;width:100%;height:auto}.pp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:normal}<\/style><div class=\"pp\"><picture><source type=\"image/avif\" srcset=\"assets/case/eventease/s01-1200.avif 1200w, assets/case/eventease/s01-2400.avif 2400w, assets/case/eventease/s01-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/eventease/s01-2400.webp\" srcset=\"assets/case/eventease/s01-1200.webp 1200w, assets/case/eventease/s01-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"3201\" loading=\"lazy\" decoding=\"async\" alt=\"EventEase UX case study: an event-management app, from research to final design\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/eventease/s02-1200.avif 1200w, assets/case/eventease/s02-2400.avif 2400w, assets/case/eventease/s02-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/eventease/s02-2400.webp\" srcset=\"assets/case/eventease/s02-1200.webp 1200w, assets/case/eventease/s02-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"3165\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/eventease/s03-1200.avif 1200w, assets/case/eventease/s03-2400.avif 2400w, assets/case/eventease/s03-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/eventease/s03-2400.webp\" srcset=\"assets/case/eventease/s03-1200.webp 1200w, assets/case/eventease/s03-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"2193\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/eventease/s04-1200.avif 1200w, assets/case/eventease/s04-2400.avif 2400w, assets/case/eventease/s04-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/eventease/s04-2400.webp\" srcset=\"assets/case/eventease/s04-1200.webp 1200w, assets/case/eventease/s04-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"2991\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/eventease/s05-1200.avif 1200w, assets/case/eventease/s05-2400.avif 2400w, assets/case/eventease/s05-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/eventease/s05-2400.webp\" srcset=\"assets/case/eventease/s05-1200.webp 1200w, assets/case/eventease/s05-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"3063\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><div class=\"ee-demo\"><picture><source type=\"image/avif\" srcset=\"assets/case/eventease/s06-1200.avif 1200w, assets/case/eventease/s06-2400.avif 2400w, assets/case/eventease/s06-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/eventease/s06-2400.webp\" srcset=\"assets/case/eventease/s06-1200.webp 1200w, assets/case/eventease/s06-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"3234\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><div class=\"ee-demo-box\"><video class=\"ee-demo-video\" muted loop playsinline preload=\"metadata\" poster=\"assets/case/eventease/eventease-demo-poster.webp\" width=\"800\" height=\"1422\" aria-label=\"EventEase app screen recording\"><source src=\"assets/case/eventease/eventease-demo.mp4\" type=\"video/mp4\"><\/video><\/div><\/div><picture><source type=\"image/avif\" srcset=\"assets/case/eventease/s07-1200.avif 1200w, assets/case/eventease/s07-2400.avif 2400w, assets/case/eventease/s07-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/eventease/s07-2400.webp\" srcset=\"assets/case/eventease/s07-1200.webp 1200w, assets/case/eventease/s07-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"2805\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/eventease/s08-1200.avif 1200w, assets/case/eventease/s08-2400.avif 2400w, assets/case/eventease/s08-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/eventease/s08-2400.webp\" srcset=\"assets/case/eventease/s08-1200.webp 1200w, assets/case/eventease/s08-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"3429\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/eventease/s09-1200.avif 1200w, assets/case/eventease/s09-2400.avif 2400w, assets/case/eventease/s09-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/eventease/s09-2400.webp\" srcset=\"assets/case/eventease/s09-1200.webp 1200w, assets/case/eventease/s09-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"2829\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><div class=\"pp-sr\"><h2>Celebrations, without the local network?<\/h2><p>EventEase: a UX case study on small-scale event planning for people in a new city.<\/p><h3>Overview<\/h3><p>84.9% of the sized events market is weddings and allied; 6.82% of industry growth attention goes to personal events; ₹5–15L is the household income of India's largest income group; 66.4% prefer small gatherings at home.<\/p><h3>Problem framing<\/h3><p>Why is a small celebration so hard to organise in a new city? Methods: desk research and team synthesis, with a scoping matrix. Hands-on output: a scoped problem and one research question for every phase.<\/p><h3>Why small-scale event planning, and why now?<\/h3><p>Small events are overlooked; reliability is hard to find; hosts are overwhelmed; the tier-1 city dilemma; home, away from home. Each carries a design implication, such as designing for 10–50 guests at home, making verification visible, composing a package rather than handing over a directory, and treating customs as first-class filters.<\/p><h3>Macro view of the event industry<\/h3><p>KPMG data: weddings and allied segments take 84.9% of the ₹4,87,133 Cr market; personal events rank 8th of 9 for future growth at 6.82%, 3.3 times less than weddings. Festivals are the bridge. Households in the ₹5–15L group grow 4.8% a year and typically budget ₹10k–50k for a small event.<\/p><h3>How does the competition look?<\/h3><p>WedMeGood, WeddingWire and The Knot are compared on cost, authenticity, local reach, support, reliability, crowding, usability and customisation, with the EventEase answer to each issue.<\/p><h3>What interview data says<\/h3><p>72.4% would want online options for birthday parties, 68.1% help with catering, 66.4% small gatherings at home, 53.1% an event planning app. 53.8% of interested respondents were women and 46.2% men; 63% were aged 25–34; most plan a budget between ₹10k and ₹50k.<\/p><h3>Pain points<\/h3><p>Pain points mapped by theme (trust and quality, coordination, money, space and scale, time) across pre-planning, planning, execution and post-event.<\/p><h3>Three stakeholders<\/h3><p>Madhu Ranjan, the host; Natasha Singh, the planner; Mahaveer Gupta, the vendor. Each has core needs and frustrations, and their journey is mapped from pre-planning to feedback and iteration with what they think, say and do, and where EventEase steps in.<\/p><h3>Madhu's griha pravesh scenario<\/h3><p>A service blueprint of a griha pravesh in a new 3BHK in Delhi, showing every constraint carried in the host's head across friends, decorator, market and guests.<\/p><h3>Brand and identity<\/h3><p>Making celebrations effortless: a one stop platform to discover, plan and manage memorable events with trusted services and budget friendly packages. Personality: convenient, trustworthy, joyful, accessible. Typography: Noto Sans and EventEase Script. Palette: deep teal navy #103746, vibrant red #DA4727, golden yellow #F1B702, soft grey #CCCCCC, charcoal #262626.<\/p><h3>A marketplace that works for both sides<\/h3><p>Hosts get a trusted, budget-true celebration; vendors get steady work. EventEase earns a flat 2% platform fee per booking, for example ₹342 on a ₹17,100 package.<\/p><h3>Low fidelity for usability testing<\/h3><p>Two variations of the booking flow: a guided wizard (occasion, date and guests, budget, package options, review and tweak, confirmation) and a browse-first flow (explore, catering list, vendor profile, event board, event-day plan, pay in stages).<\/p><h3>High fidelity wireframes<\/h3><p>Home and agenda screens, package overview (\"What am I getting, and can I change it?\"), catering and decor provider selection, event details (\"Before I pay, is everything right?\"), payment and payment success, annotated with usability principles such as match with the real world, user control and freedom, error prevention and visibility of system status.<\/p><\/div><\/div>"
+    },
+    adventuretourism: {
+      kicker: '',
+      title: '',
+      body: '',
+      image: null,
+      pdf: null,
+      html: "<style>.pp{position:relative;width:100%;background:#fff}.pp picture{display:block}.pp picture:not(:last-of-type){margin-bottom:-1px}.pp-tile{display:block;width:100%;height:auto}.pp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:normal}<\/style><div class=\"pp\"><picture><source type=\"image/avif\" srcset=\"assets/case/adventure/s01-1200.avif 1200w, assets/case/adventure/s01-2400.avif 2400w, assets/case/adventure/s01-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/adventure/s01-2400.webp\" srcset=\"assets/case/adventure/s01-1200.webp 1200w, assets/case/adventure/s01-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"2853\" loading=\"lazy\" decoding=\"async\" alt=\"Adventure Tourism in India: a UX case study on trust, safety and discoverability\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/adventure/s02-1200.avif 1200w, assets/case/adventure/s02-2400.avif 2400w, assets/case/adventure/s02-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/adventure/s02-2400.webp\" srcset=\"assets/case/adventure/s02-1200.webp 1200w, assets/case/adventure/s02-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"2655\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/adventure/s03-1200.avif 1200w, assets/case/adventure/s03-2400.avif 2400w, assets/case/adventure/s03-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/adventure/s03-2400.webp\" srcset=\"assets/case/adventure/s03-1200.webp 1200w, assets/case/adventure/s03-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"1832\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/adventure/s04-1200.avif 1200w, assets/case/adventure/s04-2400.avif 2400w, assets/case/adventure/s04-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/adventure/s04-2400.webp\" srcset=\"assets/case/adventure/s04-1200.webp 1200w, assets/case/adventure/s04-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"4310\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/adventure/s05-1200.avif 1200w, assets/case/adventure/s05-2400.avif 2400w, assets/case/adventure/s05-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/adventure/s05-2400.webp\" srcset=\"assets/case/adventure/s05-1200.webp 1200w, assets/case/adventure/s05-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"1610\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/adventure/s06-1200.avif 1200w, assets/case/adventure/s06-2400.avif 2400w, assets/case/adventure/s06-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/adventure/s06-2400.webp\" srcset=\"assets/case/adventure/s06-1200.webp 1200w, assets/case/adventure/s06-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"2376\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><picture><source type=\"image/avif\" srcset=\"assets/case/adventure/s07-1200.avif 1200w, assets/case/adventure/s07-2400.avif 2400w, assets/case/adventure/s07-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/adventure/s07-2400.webp\" srcset=\"assets/case/adventure/s07-1200.webp 1200w, assets/case/adventure/s07-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"3525\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><div class=\"pp-z\" data-zoom=\"adventure-s08\" role=\"button\" tabindex=\"0\" aria-label=\"Zoom in to read the small text in this section\"><div class=\"pp-zoom-pill-wrap\" aria-hidden=\"true\"><span class=\"pp-zoom-pill\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"\/><path d=\"M21 21l-4.3-4.3M11 8v6M8 11h6\"\/><\/svg><span class=\"t-touch\">Tap to zoom<\/span><span class=\"t-mouse\">Click to zoom<\/span><\/span><\/div><picture><source type=\"image/avif\" srcset=\"assets/case/adventure/s08-1200.avif 1200w, assets/case/adventure/s08-2400.avif 2400w, assets/case/adventure/s08-3600.avif 3600w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\"><img class=\"pp-tile\" src=\"assets/case/adventure/s08-2400.webp\" srcset=\"assets/case/adventure/s08-1200.webp 1200w, assets/case/adventure/s08-2400.webp 2400w\" sizes=\"(max-width:700px) 200vw, min(98vw,1900px)\" width=\"3600\" height=\"4397\" loading=\"lazy\" decoding=\"async\" alt=\"\"><\/picture><\/div><div class=\"pp-sr\"><h2>Adventure Tourism in India<\/h2><p>Market size $16.7B in 2024, projected to reach $86B by 2033, with 500K people employed. Adventure tourism is travel built around a physical activity, a natural environment and a perceived element of risk, delivered by a mix of operators, guides and hospitality. The UN Tourism / ATTA framing uses three pillars: physical activity, nature and cultural immersion.<\/p><h3>Emergence?<\/h3><p>Adventure sports emerged from ancient survival techniques, indigenous rituals and a 20th-century cultural shift towards risk, self-realization and opposition to modern, structured lifestyles. The formalized adventure sports industry grew significantly from the 1970s onward.<\/p><h3>Categorising adventure activities<\/h3><p>Six groups: Air, Water, Mountain and Trail, Snow and Ice, Desert and Wildlife, and Caves and Canyons, each with its activities and main regions in India.<\/p><h3>Mapping hotspots (risk vs popularity)<\/h3><p>A map of India marking Jammu and Kashmir and Himachal Pradesh, Rajasthan, Goa, Meghalaya, and Karnataka, Kerala and Tamil Nadu with their adventure activities, plus a seasonal heat map of trekking, paragliding and rafting by month.<\/p><h3>Why, who go: motivations, criteria, behaviours<\/h3><p>30% travel exploration and novelty, 25% stress relief and relaxation, 20% thrill and excitement, 15% social bonding, 10% skill development.<\/p><h3>Understanding the current state of the adventure industry<\/h3><p>A challenges diagram covering information asymmetry, inter-agency silos, locals, remote areas, safety, over-crowding, lack of infrastructure, incompatible equipment, untrained instructors and medical facility absence, with news clippings of accidents.<\/p><h3>Stakeholders involved<\/h3><p>A stakeholder map around visitors and guides, grouped into delivery, enablers, community and governance.<\/p><h3>Problem statement, hypothesis and scope<\/h3><p>How might India make adventure tourism more discoverable, trustworthy and accessible without diluting the sense of adventure? Three areas: motivations, decision barriers, and trust and delivery.<\/p><h3>Understanding from the users<\/h3><p>A questionnaire with 68 tourist responses: 60.9% (42 people) have experienced adventure activity and 39.1% (26 people) have never engaged in any. Main deterrents: cost and affordability 30.8%, lack of time and opportunity 30.8%, safety concerns 26.9%.<\/p><h3>User archetypes<\/h3><p>The Thrill Seeker, The Social Follower, The Cautious Aspirant and The Price-First Traveller.<\/p><h3>Where does this trust build, bend and break?<\/h3><p>Trust level (0 to 10) across the service blueprint for three activities, over eight stages from discovery and research to post-experience review, each with its trust bends and trust breaks.<\/p><h3>Expert reviews<\/h3><p>Interviews with private authorities (2), tourists (68 questionnaire responses), travel agencies (3), government bodies (2) and guides and instructors (6).<\/p><h3>Making some data connect? Triangulation<\/h3><p>Findings from government bodies, tourists, travel agencies, private authorities and guides and instructors, linked to field photographs.<\/p><h3>Coding the data points<\/h3><p>Sticky-note clusters A to O leading to eight themes: trust is relational never evidential; the accountability vacuum; incident suppression loop; competency and standards; commercial interests dominate safety systems; medical information blackout; normalisation of deviance; infrastructure gaps amplify risk into failure.<\/p><h3>How do we see the gap?<\/h3><p>How do gaps between communicated safety and actual on-ground practices influence tourist trust, perception of risk and decision making in adventure tourism? Eight insights close the study.<\/p><\/div><\/div>"
+    },
     parali: {
-      kicker: '04 / Community intervention · Sustainability',
-      title: 'The Parali Plan',
-      body: 'A community-intervention concept exploring how design can help transform agricultural residue into more sustainable opportunities and reduce crop burning.',
-      image: 'assets/parali-plan-tile.jpg',
-      pdf: null
+      kicker: '',
+      title: '',
+      body: '',
+      image: null,
+      pdf: null,
+      html: "<style>.pp{position:relative;width:100%;background:#fff}.pp-tile{display:block;width:100%;height:auto}.pp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:normal}</style><div class=\"pp\"><img class=\"pp-tile\" src=\"assets/parali/01-hero-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"754\" alt=\"The Parali Plan — project summary and key statistics on stubble burning\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/02-where-from-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"756\" alt=\"Where is this coming from? — crop calendar, rice and wheat production by state, map of India\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/03-who-suffer-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"699\" alt=\"Who are suffering? — impact of stubble burning on farmers, soil, village households, cities and climate\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/04-where-problem-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"576\" alt=\"Where is the problem? — root drivers, temporal factors and consequences of burning\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/05-who-farmers-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"631\" alt=\"Who are these farmers? — two farmer archetypes drawn from interviews\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/06-season-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"652\" alt=\"A season in the fields — what happens, touchpoints, thinking and feeling across the year\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/07-practices-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"746\" alt=\"Farmers current practices and why they do so — easier, low cost, time effective, misconception\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/08-leftover-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"679\" alt=\"What to do with the leftover? — available solutions to clear land after harvest\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/09-building-2400-v2.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"681\" alt=\"What are we building? — three paths after harvest: burn, dispose, Parali\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/10-creating-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"711\" alt=\"What are they creating? — home furnishing products made from stubble grass\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/11-how-creating-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"762\" alt=\"How are they creating? — braided stubble and pitloom weaving process\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/12-service-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"895\" alt=\"Service &amp; livelihood model — collect and store, skill and make, package and sell, payback\" loading=\"lazy\" decoding=\"async\"><img class=\"pp-tile\" src=\"assets/parali/13-value-2400.webp\" sizes=\"min(100vw, 1900px)\" width=\"1400\" height=\"854\" alt=\"Where does the value flow? — exchanges between government, farmers, NGO hub, artisans and buyers\" loading=\"lazy\" decoding=\"async\"></div>"
     }
   };
 
@@ -849,17 +1194,54 @@ document.querySelectorAll('.hanging-tag-flip').forEach(card => {
   const visual = document.getElementById('modal-visual');
   const actions = document.getElementById('modal-actions');
 
-  document.querySelectorAll('.visual-project[data-project]').forEach(card => {
+  // EventEase demo video: plays only while on screen. Observers are attached after the popup HTML is injected (innerHTML does not run scripts).
+  let eeVideo = null, eeInView = false, eeIO = null, eeWarm = null;
+  function eeStop() {
+    if (eeIO) eeIO.disconnect();
+    if (eeWarm) eeWarm.disconnect();
+    if (eeVideo) eeVideo.pause();
+    eeIO = eeWarm = eeVideo = null; eeInView = false;
+  }
+  function eeInit() {
+    eeStop();
+    const v = visual.querySelector('.ee-demo-video');
+    if (!v) return;
+    v.muted = true;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.preload = 'none'; return; } // still poster only
+    eeVideo = v;
+    // start fetching shortly before it is reached (root = the scrolling modal so rootMargin applies)
+    eeWarm = new IntersectionObserver((es, o) => {
+      if (es.some(e => e.isIntersecting)) { v.preload = 'auto'; o.disconnect(); }
+    }, { root: modal, rootMargin: '100% 0px' });
+    eeWarm.observe(v);
+    // play from the start when ~30% is visible, pause when it leaves
+    eeIO = new IntersectionObserver(es => {
+      const e = es[es.length - 1];
+      eeInView = e.isIntersecting && e.intersectionRatio >= 0.3;
+      if (eeInView && !document.hidden) { if (v.paused) { v.currentTime = 0; v.play().catch(() => {}); } }
+      else v.pause();
+    }, { root: modal, threshold: [0, 0.3] });
+    eeIO.observe(v);
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (!eeVideo) return;
+    if (document.hidden) eeVideo.pause();
+    else if (eeInView && eeVideo.paused) eeVideo.play().catch(() => {});
+  });
+
+  document.querySelectorAll('.visual-project[data-project], .fc-card[data-project]').forEach(card => {
     card.addEventListener('click', e => {
       e.preventDefault();
       const d = projects[card.dataset.project];
       if (!d) return;
       kicker.textContent = d.kicker;
       title.textContent = d.title;
-      body.textContent = d.body;
-      visual.innerHTML = d.image ? `<img class="modal-board" src="${d.image}" alt="${d.title}">` : '';
-      actions.innerHTML = d.pdf ? `<a class="pill dark" href="${d.pdf}" target="_blank" rel="noreferrer">Open full project PDF ↗</a>` : '<span class="eyebrow">Case study preview</span>';
+      body.textContent = d.html ? '' : d.body;
+      visual.innerHTML = d.html ? d.html : d.image ? `<img class="modal-board" src="${d.image}" alt="${d.title}">` : '';
+      actions.innerHTML = d.html ? '' : d.pdf ? `<a class="pill dark" href="${d.pdf}" target="_blank" rel="noreferrer">Open full project PDF ↗</a>` : '<span class="eyebrow">Case study preview</span>';
+      modal.classList.toggle('is-poster', !!d.html);
       modal.classList.add('is-open');
+      eeInit();
       document.body.style.overflow = 'hidden';
       document.getElementById('modal-close').focus();
     });
@@ -867,6 +1249,7 @@ document.querySelectorAll('.hanging-tag-flip').forEach(card => {
 
   function closeModal() {
     modal.classList.remove('is-open');
+    eeStop();
     document.body.style.overflow = '';
   }
   document.getElementById('modal-close').addEventListener('click', closeModal);
@@ -877,29 +1260,49 @@ document.querySelectorAll('.hanging-tag-flip').forEach(card => {
 // Cursor Dot
 (() => {
   const dot = document.getElementById('cursor-dot');
-  if (dot && matchMedia('(pointer:fine)').matches) {
-    let x = innerWidth / 2, y = innerHeight / 2, tx = x, ty = y;
-    document.addEventListener('pointermove', e => {
-      tx = e.clientX; ty = e.clientY;
-      dot.style.color = (Math.floor((tx + ty) / 35) % 2 === 0) ? '#e8b900' : '#292929';
-    }, { passive: true });
-    function tick() {
-      x += (tx - x) * 0.72;
-      y += (ty - y) * 0.72;
-      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
-      requestAnimationFrame(tick);
-    }
-    tick();
-    document.querySelectorAll('a, button, .visual-project').forEach(el => {
-      el.addEventListener('pointerenter', () => dot.classList.add('is-hover'));
-      el.addEventListener('pointerleave', () => dot.classList.remove('is-hover'));
-    });
-    document.addEventListener('pointerdown', () => dot.classList.add('is-click'));
-    document.addEventListener('pointerup', () => dot.classList.remove('is-click'));
-  }
+  if (!dot || !matchMedia('(pointer:fine)').matches) return;
+
+  const INTERACTIVE = 'a, button, [role="button"], input, select, textarea, label, summary, .visual-project, .fc-card, .hanging-tag-flip, .modal-close, .pill';
+  let tx = 0, ty = 0, frame = 0;
+
+  const place = () => {
+    frame = 0;
+    dot.style.transform = `translate3d(${tx - 6}px, ${ty - 6}px, 0)`;
+  };
+  const show = () => dot.classList.add('is-visible');
+  const hide = () => dot.classList.remove('is-visible', 'is-click', 'is-hover');
+  const press = on => dot.classList.toggle('is-click', on);
+
+  // The dot sits exactly on the pointer (no easing), so it never trails the cursor.
+  document.addEventListener('pointermove', e => {
+    if (e.pointerType === 'touch') return;
+    const zm = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+    tx = e.clientX / zm; ty = e.clientY / zm;
+    if (!frame) frame = requestAnimationFrame(place);
+    show();
+    // Alternating tone across the page (the original yellow / charcoal pattern).
+    dot.style.setProperty('--dot-tone', (Math.floor((tx + ty) / 35) % 2 === 0) ? '#e8b900' : '#292929');
+  }, { passive: true });
+
+  // Hover is handled by delegation, so it also works for elements added later.
+  document.addEventListener('pointerover', e => {
+    if (e.pointerType === 'touch') return;
+    const hit = e.target instanceof Element ? e.target.closest(INTERACTIVE) : null;
+    dot.classList.toggle('is-hover', !!hit);
+  }, { passive: true });
+
+  document.addEventListener('pointerdown', e => { if (e.pointerType !== 'touch') press(true); }, { passive: true });
+  document.addEventListener('pointerup', () => press(false), { passive: true });
+  document.addEventListener('pointercancel', () => press(false), { passive: true });
+  window.addEventListener('blur', () => press(false));
+  // Pointer left the browser window: hide the dot until it comes back.
+  document.documentElement.addEventListener('pointerleave', hide);
+  document.documentElement.addEventListener('pointerenter', e => { if (e.pointerType !== 'touch' && tx + ty > 0) show(); });
 })();
 
-// Flight Animation Engine
+// =========================================================================
+// ULTRA-SMOOTH MONODIRECTIONAL FLIGHT ENGINE (OFF-SCREEN ENTRANCE TO LANDING)
+// =========================================================================
 (() => {
   const section = document.getElementById('approach');
   const path = document.getElementById('scroll-plane-path');
@@ -909,20 +1312,23 @@ document.querySelectorAll('.hanging-tag-flip').forEach(card => {
   if (!section || !path || !plane || !stage) return;
 
   const pathLength = path.getTotalLength();
-  let maxProgress = 0;
+  let maxProgress = 0;       // Strictly forward: scrolling up never pulls the plane backward
   let targetProgress = 0;
   let currentProgress = 0;
-  const lerpSpeed = 0.048;
-  let smoothedAngle = 186;
+  const lerpSpeed = 0.048;   // Smooth natural fluid damping
+  let smoothedAngle = 186;   // Native alignment for plane.png
 
   function calculateTarget() {
     const rect = section.getBoundingClientRect();
     const windowH = window.innerHeight;
+    
+    // Flight triggers smoothly as the user finishes reading the hero section
     const startY = windowH * 0.90;
     const endY = windowH * 0.22;
     const rawProgress = (startY - rect.top) / (startY - endY);
     const clampedProgress = Math.max(0, Math.min(1, rawProgress));
 
+    // Monotonic progression rule
     if (clampedProgress > maxProgress) {
       maxProgress = clampedProgress;
     }
@@ -935,6 +1341,7 @@ document.querySelectorAll('.hanging-tag-flip').forEach(card => {
     currentProgress += (targetProgress - currentProgress) * lerpSpeed;
     const currentDist = currentProgress * pathLength;
 
+    // Gracefully fade in as the plane glides from off-canvas into the viewport
     if (currentProgress < 0.015) {
       plane.style.opacity = '0';
     } else {
@@ -942,6 +1349,7 @@ document.querySelectorAll('.hanging-tag-flip').forEach(card => {
       plane.style.opacity = String(enterOpacity);
     }
 
+    // Wide 15px symmetrical lookahead/behind to completely eliminate rotational flutter
     const delta = 15;
     const ptPrev = path.getPointAtLength(Math.max(0, currentDist - delta));
     const ptNext = path.getPointAtLength(Math.min(pathLength, currentDist + delta));
@@ -950,14 +1358,17 @@ document.querySelectorAll('.hanging-tag-flip').forEach(card => {
     const dx = ptNext.x - ptPrev.x;
     const dy = ptNext.y - ptPrev.y;
     const rad = Math.atan2(dy, dx);
-    const targetDeg = rad * (180 / Math.PI) + 186;
+    const targetDeg = rad * (180 / Math.PI) + 186; // Calibrated for plane.png's west-facing tip
 
+    // Angular unwrapping & weighted spring filter for physical flight realism
     let diff = (targetDeg - smoothedAngle) % 360;
     if (diff < -180) diff += 360;
     if (diff > 180) diff -= 360;
     smoothedAngle += diff * 0.08;
 
+    // Aerodynamic banking into vertical swoop curves
     const bank = Math.max(-16, Math.min(16, (dy / (Math.abs(dx) + 0.2)) * 22));
+
     const pixelX = (pt.x / 1200) * stage.offsetWidth;
     const pixelY = (pt.y / 360) * stage.offsetHeight;
 
@@ -976,6 +1387,7 @@ document.querySelectorAll('.hanging-tag-flip').forEach(card => {
   calculateTarget();
   requestAnimationFrame(renderPlane);
 
+  // Manual replay button
   const launchBtn = document.getElementById('launch-plane');
   if (launchBtn) {
     launchBtn.addEventListener('click', () => {
@@ -986,6 +1398,183 @@ document.querySelectorAll('.hanging-tag-flip').forEach(card => {
       plane.style.opacity = '0';
     });
   }
+})();
+
+// Subtle hover loops (cards with data-smoke)
+(() => {
+  document.querySelectorAll('.visual-project[data-smoke]').forEach(card => {
+    const ov = card.querySelector('.smoke-overlay');
+    if (!ov) return;
+    let timer;
+    const start = () => { clearTimeout(timer); ov.src = card.dataset.smoke; ov.classList.add('is-on'); };
+    const stop  = () => { ov.classList.remove('is-on'); timer = setTimeout(() => ov.removeAttribute('src'), 700); };
+    card.addEventListener('pointerenter', start);
+    card.addEventListener('pointerleave', stop);
+    card.addEventListener('focus', start);
+    card.addEventListener('blur', stop);
+  });
+})();
+</script>
+<script>
+/* ---- Tap-to-zoom viewer for dense poster slices -------------------------------------
+   Loads nothing until the visitor asks to zoom. Then it lazy-loads OpenSeadragon once and
+   streams only the 1024px WebP tiles that are on screen from a pre-rendered 5x pyramid.
+   Add another zoomable slice by adding an entry to ZOOMS and wrapping its <picture> in
+   <div class="pp-z" data-zoom="key" ...>.                                                */
+(function () {
+  const OSD_SRC = 'assets/vendor/openseadragon.min.js';
+  const ZOOMS = {
+    'adventure-s08': {
+      label: 'Coding the data points and Insights',
+      dir: 'assets/case/adventure/zoom/s08',
+      width: 7200, height: 8793, tile: 1024, fmt: 'webp'
+    }
+  };
+
+  let osdPromise = null;
+  function loadOSD() {
+    if (window.OpenSeadragon) return Promise.resolve();
+    if (!osdPromise) {
+      osdPromise = new Promise((res, rej) => {
+        const s = document.createElement('script');
+        s.src = OSD_SRC; s.async = true;
+        s.onload = res;
+        s.onerror = () => { osdPromise = null; rej(new Error('osd')); };
+        document.head.appendChild(s);
+      });
+    }
+    return osdPromise;
+  }
+
+  let root = null, stage = null, viewer = null, opener = null, bar = null, closeBtn = null, msg = null;
+  const svg = (d) => '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
+
+  function build() {
+    if (root) return;
+    root = document.createElement('div');
+    root.className = 'zv';
+    root.hidden = true;
+    root.setAttribute('role', 'dialog');
+    root.setAttribute('aria-modal', 'true');
+    root.innerHTML =
+      '<div class="zv-stage"></div>' +
+      '<div class="zv-bar" role="toolbar" aria-label="Zoom controls">' +
+        '<button type="button" data-a="out" aria-label="Zoom out">' + svg('<path d="M5 12h14"/>') + '</button>' +
+        '<button type="button" data-a="in" aria-label="Zoom in">' + svg('<path d="M12 5v14M5 12h14"/>') + '</button>' +
+        '<button type="button" data-a="home" aria-label="Fit whole poster">' + svg('<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>') + '</button>' +
+        '<button type="button" data-a="close" aria-label="Close zoom">' + svg('<path d="M6 6l12 12M18 6L6 18"/>') + '</button>' +
+      '</div>' +
+      '<p class="zv-hint" aria-hidden="true">Scroll or pinch to zoom · drag to move · Esc to close</p>' +
+      '<p class="zv-msg" role="status"></p>';
+    document.body.appendChild(root);
+    stage = root.querySelector('.zv-stage');
+    bar = root.querySelector('.zv-bar');
+    closeBtn = bar.querySelector('[data-a="close"]');
+    msg = root.querySelector('.zv-msg');
+    bar.addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      const a = b.dataset.a;
+      if (a === 'close') return close();
+      if (!viewer) return;
+      if (a === 'in') viewer.viewport.zoomBy(1.7);
+      if (a === 'out') viewer.viewport.zoomBy(1 / 1.7);
+      if (a === 'home') viewer.viewport.goHome();
+      viewer.viewport.applyConstraints();
+    });
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { e.stopPropagation(); close(); }
+      else if (e.key === 'Tab') {            // keep focus inside the dialog
+        const f = [...bar.querySelectorAll('button')];
+        const i = f.indexOf(document.activeElement);
+        if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+        else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+      }
+    }, true);
+  }
+
+  function open(key, fx, fy, from) {
+    const z = ZOOMS[key]; if (!z) return;
+    build();
+    opener = from || null;
+    root.setAttribute('aria-label', 'Zoomable view: ' + z.label);
+    root.hidden = false;
+    document.documentElement.classList.add('zv-open');
+    msg.textContent = 'Loading detail…'; msg.hidden = false;
+    closeBtn.focus({ preventScroll: true });
+
+    loadOSD().then(() => {
+      if (root.hidden) return;               // closed while loading
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      viewer = OpenSeadragon({
+        element: stage,
+        prefixUrl: '',
+        showNavigationControl: false,
+        showNavigator: innerWidth > 900,
+        navigatorPosition: 'BOTTOM_LEFT',
+        navigatorSizeRatio: 0.11,
+        navigatorAutoFade: false,
+        animationTime: reduce ? 0 : 0.7,
+        blendTime: reduce ? 0 : 0.2,
+        springStiffness: 8,
+        visibilityRatio: 0.6,
+        minZoomImageRatio: 0.85,
+        maxZoomPixelRatio: 2.5,
+        imageLoaderLimit: 6,
+        gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true },
+        gestureSettingsTouch: { pinchToZoom: true, dblClickToZoom: true },
+        tileSources: {
+          Image: {
+            xmlns: 'http://schemas.microsoft.com/deepzoom/2008',
+            Url: z.dir + '/', Format: z.fmt, Overlap: '0', TileSize: String(z.tile),
+            Size: { Width: String(z.width), Height: String(z.height) }
+          }
+        }
+      });
+      viewer.addHandler('open', () => {
+        msg.hidden = true;
+        // Start where the visitor tapped, at a size where the small text is comfortably readable
+        // (~2 image px per CSS px => crisp on 2x screens, tile cost stays small).
+        const cw = stage.clientWidth || innerWidth;
+        const target = Math.max(1.4, Math.min(12, z.width / (cw * 2.2)));
+        viewer.viewport.zoomTo(target, null, true);
+        viewer.viewport.panTo(new OpenSeadragon.Point(fx, fy * z.height / z.width), true);
+        viewer.viewport.applyConstraints(true);
+      });
+      viewer.addHandler('open-failed', fail);
+    }).catch(fail);
+  }
+
+  function fail() {
+    msg.hidden = false;
+    msg.textContent = 'Could not load the zoom view. Please check your connection and try again.';
+  }
+
+  function close() {
+    if (!root || root.hidden) return;
+    if (viewer) { viewer.destroy(); viewer = null; }   // frees decoded tiles (matters on phones)
+    stage.innerHTML = '';
+    root.hidden = true;
+    document.documentElement.classList.remove('zv-open');
+    if (opener && opener.isConnected) opener.focus({ preventScroll: true });
+    opener = null;
+  }
+
+  // ---- wiring: works for markup injected later (event delegation on document) ----
+  function target(e) { return e.target.closest && e.target.closest('.pp-z[data-zoom]'); }
+  document.addEventListener('click', (e) => {
+    const el = target(e); if (!el) return;
+    e.preventDefault();
+    const r = el.getBoundingClientRect();
+    const hasPos = e.clientX || e.clientY;
+    open(el.dataset.zoom, hasPos ? (e.clientX - r.left) / r.width : 0.5, hasPos ? (e.clientY - r.top) / r.height : 0.5, el);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const el = target(e); if (!el || e.target !== el) return;
+    e.preventDefault(); open(el.dataset.zoom, 0.5, 0.5, el);
+  });
+  // Warm the (cached) viewer script as soon as someone shows intent, never on page load.
+  ['pointerover', 'touchstart', 'focusin'].forEach((t) => document.addEventListener(t, (e) => { if (target(e)) loadOSD().catch(() => {}); }, { passive: true }));
 })();
 </script>
 </body>
