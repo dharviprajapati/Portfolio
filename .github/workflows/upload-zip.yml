@@ -1,0 +1,101 @@
+name: Replace site files from release zip
+
+# Runs whenever you publish a Release that has a .zip attached.
+# It replaces ONLY: index.html, the CV file(s), and the assets/ folder.
+# CNAME and everything else in the repo are never touched.
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-upload
+  cancel-in-progress: false
+
+jobs:
+  replace:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download the zip from the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          mkdir -p /tmp/rel
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern '*.zip' --dir /tmp/rel
+          count=$(ls /tmp/rel/*.zip 2>/dev/null | wc -l)
+          if [ "$count" -ne 1 ]; then
+            echo "::error::Attach exactly one .zip file to the release (found $count)."
+            exit 1
+          fi
+
+      - name: Unzip and locate the site files
+        run: |
+          mkdir -p /tmp/unz
+          unzip -q /tmp/rel/*.zip -d /tmp/unz
+          rm -rf /tmp/unz/__MACOSX
+          find /tmp/unz -name '.DS_Store' -delete
+
+          # Works whether the zip has the files at the top level or inside one parent folder
+          INDEX=$(find /tmp/unz -type f -name index.html | awk '{print gsub("/","/"), $0}' | sort -n | head -1 | cut -d' ' -f2-)
+          if [ -z "$INDEX" ]; then
+            echo "::error::index.html was not found inside the zip."
+            exit 1
+          fi
+          ROOT=$(dirname "$INDEX")
+          if [ ! -d "$ROOT/assets" ]; then
+            echo "::error::assets/ folder was not found next to index.html in the zip."
+            exit 1
+          fi
+
+          big=$(find "$ROOT" -type f -size +100M)
+          if [ -n "$big" ]; then
+            echo "These files are over GitHub's 100 MB per-file limit:"
+            echo "$big"
+            echo "::error::Compress the files listed above and upload a new release."
+            exit 1
+          fi
+
+          echo "ROOT=$ROOT" >> "$GITHUB_ENV"
+
+      - name: Replace index, CV and assets (CNAME untouched)
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          shopt -s nullglob nocaseglob
+
+          # Old CV file(s) in the repo root (so a renamed CV doesn't pile up)
+          OLD_CV=()
+          for f in *cv* *resume*; do [ -f "$f" ] && OLD_CV+=("$f"); done
+
+          # New CV file(s) from the zip
+          NEW_CV=()
+          for f in "$ROOT"/*cv* "$ROOT"/*resume*; do [ -f "$f" ] && NEW_CV+=("$(basename "$f")"); done
+
+          rm -f "${OLD_CV[@]}"
+          rm -rf assets
+          cp "$ROOT/index.html" index.html
+          cp -R "$ROOT/assets" assets
+          for f in "${NEW_CV[@]}"; do cp "$ROOT/$f" "$f"; done
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Stage ONLY these paths so CNAME and everything else stay untouched
+          git add -A -- index.html assets "${OLD_CV[@]}" "${NEW_CV[@]}"
+
+          if git diff --cached --quiet; then
+            echo "Nothing to change. Repo already matches the zip."
+            exit 0
+          fi
+
+          git commit -m "Update site from release $TAG"
+          git push origin HEAD:main
