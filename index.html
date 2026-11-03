@@ -705,29 +705,34 @@ div.fc-audit { cursor: default; }
 @media (min-width: 901px) { .cu-collage { top: -2.5cm; left: 1cm; width: 105%; margin-bottom: -4.788%; } }
 .cu-collage > img { position: absolute; display: block; max-width: none; margin: 0; }
 .cu-collage > .cu-c-board { border-radius: 1.989cqw; }
-.cu-intro { grid-column: 1; grid-row: 1; max-width: 504px; }
-.cu-intro .about-details, .cu-intro .about-lenses { max-width: 450px; }
-.cu-intro .about-copy { margin: 0; font-size: calc(clamp(21px, 2.6vw, 34px) - 2pt); }
-.cu-intro .about-details { margin: 14px 0 0; }
+.cu-intro { grid-column: 1; grid-row: 1; max-width: 560px; }
+.cu-intro .about-details, .cu-intro .about-lenses { max-width: 500px; }
+.cu-intro .about-copy { margin: 0 0 clamp(21px, 2.6vw, 34px); font-size: calc(clamp(21px, 2.6vw, 34px) - 2pt); }
+.cu-intro .about-details { margin: 0; }
 .cu-collage { grid-row: 1; }
 @media (max-width: 900px) { .cu-grid { grid-template-columns: minmax(0, 1fr); padding-right: 0; } .cu-collage { grid-column: 1; grid-row: 2; max-width: 582px; margin-top: 8px; } .cu-intro { grid-row: 1; } }
 #about-title { position: relative; top: -0.3cm; }
 /* Education row (Curious about me) */
 @media (min-width: 901px) { .edu-row { position: relative; top: -3cm; } }
 @media (min-width: 1200px) { .edu-row { top: -6cm; } }
+@media (min-width: 901px) and (max-width: 999px) { .edu-row { top: -1.6cm; } }
 .edu-row { list-style: none; margin: clamp(24px, 3vw, 40px) 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px 10px; width: max(calc(clamp(21px, 2.6vw, 34px) * 17.67), 414px); max-width: 100%; }
+/* gaps between the four items 0.7cm tighter each (3 gaps = 2.1cm of row width); never below the 10px minimum gap */
+.edu-row { width: max(calc(max(calc(clamp(21px, 2.6vw, 34px) * 17.67), 414px) - 2.1cm), 414px); }
 .edu-item { width: 96px; flex: 0 0 96px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
 .edu-logo { display: flex; align-items: center; justify-content: flex-start; height: 55px; width: 100%; }
 .edu-logo img { display: block; max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain; }
 .edu-year { margin-top: 10px; font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-size: clamp(9px, 0.7vw, 9.5px); letter-spacing: 0.12em; color: #141414; white-space: nowrap; }
 .edu-desc { margin-top: 4px; font-family: 'Inter', system-ui, sans-serif; font-size: clamp(9px, 0.63vw, 8.8px); line-height: 1.45; color: #6B6A66; max-width: 15em; }
 .edu-deg { color: #141414; font-weight: 500; }
+.edu-item:last-child .edu-desc { white-space: nowrap; }
 .edu-item:first-child .edu-logo { align-items: flex-start; }
 .edu-item:first-child .edu-logo img { max-height: 44px; }
 .edu-item:not(:first-child) .edu-logo { align-items: flex-start; }
 @media (max-width: 560px) { .edu-row { gap: 26px 20px; width: 100%; justify-content: flex-start; } .edu-item { width: calc(50% - 10px); flex-basis: calc(50% - 10px); } .edu-logo { height: 50px; } .edu-year { font-size: 10px; } .edu-desc { font-size: 10px; } }
 /* Field work */
-#field-work { margin-top: -0.5cm; }
+#field-work { margin-top: 0.5cm; }
+@media (min-width: 901px) { #field-work { margin-top: -0.5cm; } }
 @media (min-width: 1200px) { #field-work { margin-top: -5.5cm; } }
 .fw-grid { display: grid; grid-template-columns: minmax(0, 1fr); box-sizing: border-box; }
 .fw-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 2.6%; row-gap: 40px; margin-top: clamp(40px, 5vw, 64px); align-items: start; }
@@ -1075,13 +1080,13 @@ html.zv-open{overflow:hidden}
     <div class="section-head"><div><h2 id="about-title">Curious about me</h2></div></div>
     <div class="cu-grid">
       <div class="cu-intro">
-        <p class="about-copy">I’m a <em>creative thinker</em> who simplifies complex information into <span style="white-space:nowrap">colour-coded</span> visuals and looks beyond the blind&nbsp;spots.</p>
-        <p class="about-details">Rooted in textile design, I find inspiration in travelling, exploring India’s diverse craft traditions and learning from the people who keep them alive artisans, weavers and craftsmen. My curiosity extends beyond design to the world of investing and the stock market, while my involvement in sports keeps me grounded and resilient.</p>
+        <p class="about-copy">I’m a <em>creative thinker</em> who simplifies complex information into colour coded visuals and looks beyond the blind&nbsp;spots.</p>
+        <p class="about-details">Rooted in textile design, I find inspiration in travelling, exploring India’s diverse craft traditions and learning from the people who keep them alive artisans, weavers and craftsmen. I believe intuition is a designer’s greatest superpower, the ability to sense beyond what is seen, question what is known, and discover what others overlook.</p>
         <p class="about-lenses"><span style="white-space:nowrap">Data mapping</span> · <span style="white-space:nowrap">Information architecture</span> · <span style="white-space:nowrap">Colour coding</span> · <span style="white-space:nowrap">Textiles &amp; crafts</span> · Sportsmanship</p>
       </div>
       <div class="cu-collage" role="img" aria-label="A 2026 vision board on an iPad with an Apple Pencil, a week-by-week course list above and below it, and a dotted habit tracker." style="aspect-ratio:422.229/404.290"><img class="cu-c-ipad" style="left:9.903%;top:24.222%;width:72.989%;height:56.777%" src="assets/about/ipad-v2.webp" width="678" height="505" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="cu-c-wkb" style="left:43.508%;top:48.974%;width:27.559%;height:41.824%" src="assets/about/wkb-v2.webp" width="256" height="372" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="cu-c-wkt" style="left:43.981%;top:13.603%;width:27.559%;height:41.824%" src="assets/about/wkt-v2.webp" width="256" height="372" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="cu-c-dots" style="left:77.182%;top:34.470%;width:21.531%;height:55.878%" src="assets/about/dots-v2.webp" width="200" height="497" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="cu-c-board" style="left:12.049%;top:27.207%;width:68.898%;height:50.931%" src="assets/about/board-v2.webp" width="640" height="453" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="cu-c-detail" style="left:60.877%;top:50.981%;width:6.998%;height:8.095%" src="assets/about/detail-v2.webp" width="65" height="72" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="cu-c-pencil" style="left:22.364%;top:20.394%;width:48.337%;height:3.036%" src="assets/about/pencil-v2.webp" width="449" height="27" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
     </div>
-    <ul class="edu-row" aria-label="Education"><li class="edu-item"><span class="edu-logo"><img src="assets/edu/nid.webp" alt="National Institute of Design" loading="lazy" decoding="async"></span><span class="edu-year">2025-2028</span><span class="edu-desc"><span class="edu-deg">M.Des</span> (Strategic Design Management)</span></li><li class="edu-item"><span class="edu-logo"><img src="assets/edu/iitd.webp" alt="Indian Institute of Technology Delhi" loading="lazy" decoding="async"></span><span class="edu-year">2023-2024</span><span class="edu-desc">(Design Thinking for User Experience)</span></li><li class="edu-item"><span class="edu-logo"><img src="assets/edu/nift.webp" alt="National Institute of Fashion Technology" loading="lazy" decoding="async"></span><span class="edu-year">2016-2020</span><span class="edu-desc"><span class="edu-deg">B.Des</span> (Textile Design)</span></li><li class="edu-item"><span class="edu-logo"><img src="assets/edu/dps.webp" alt="Delhi Public School" loading="lazy" decoding="async"></span><span class="edu-year">2014-2016</span><span class="edu-desc"><span class="edu-deg">PCM</span> (Senior Secondary Education)</span></li></ul>
+    <ul class="edu-row" aria-label="Education"><li class="edu-item"><span class="edu-logo"><img src="assets/edu/nid.webp" alt="National Institute of Design" loading="lazy" decoding="async"></span><span class="edu-year">2025-2028</span><span class="edu-desc"><span class="edu-deg">M.Des</span> (Strategic Design Management)</span></li><li class="edu-item"><span class="edu-logo"><img src="assets/edu/iitd.webp" alt="Indian Institute of Technology Delhi" loading="lazy" decoding="async"></span><span class="edu-year">2023-2024</span><span class="edu-desc">(Design Thinking for User Experience)</span></li><li class="edu-item"><span class="edu-logo"><img src="assets/edu/nift.webp" alt="National Institute of Fashion Technology" loading="lazy" decoding="async"></span><span class="edu-year">2016-2020</span><span class="edu-desc"><span class="edu-deg">B.Des</span> (Textile Design)</span></li><li class="edu-item"><span class="edu-logo"><img src="assets/edu/dps.webp" alt="Delhi Public School" loading="lazy" decoding="async"></span><span class="edu-year">2014-2016</span><span class="edu-desc"><span class="edu-deg">PCM</span> (Senior Secondary<br>Education)</span></li></ul>
   </section>
 
   <!-- Field work -->
