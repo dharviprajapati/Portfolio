@@ -185,6 +185,8 @@ button { font: inherit; }
   object-fit: contain;
   filter: none;
 }
+/* Motif centred on the front face of the hanging tag */
+.tag-front-motif { display: block; width: 53%; height: auto; max-height: 70%; object-fit: contain; pointer-events: none; user-select: none; }
 .hanging-tag-back {
   background-image: url("assets/hanging-tag-front.webp") !important;
   transform: rotateY(180deg);
@@ -1035,7 +1037,7 @@ html.zv-open{overflow:hidden}
       <img class="hanging-thread-reference" src="assets/hanging-thread-reference.png" alt="" aria-hidden="true" />
       <div class="hanging-tag-flip" aria-label="Hanging tag">
         <span class="hanging-tag-inner">
-          <span class="hanging-tag-face hanging-tag-front"></span>
+          <span class="hanging-tag-face hanging-tag-front"><img class="tag-front-motif" src="assets/hanging-tag-motif.webp" width="520" height="711" alt="" aria-hidden="true" decoding="async"></span>
           <span class="hanging-tag-face hanging-tag-back"><span class="tag-back-copy">Bringing <strong><em>5 years</em></strong> of industry experience in leading projects, building client relationships, requirement analysis to product development &amp; implementation.</span></span>
         </span>
       </div>
