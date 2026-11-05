@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="306" height="305" viewBox="0 0 306 305" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Ring B &#226;&#128;&#147; Pale" opacity="0.9" filter="url(#filter0_f_0_4)">
+<ellipse cx="153" cy="152.5" rx="81" ry="80.5" fill="#DECBA8"/>
+<ellipse cx="153" cy="152.5" rx="81" ry="80.5" stroke="#DCEFA6" stroke-width="80"/>
+</g>
+<defs>
+<filter id="filter0_f_0_4" x="0" y="0" width="306" height="305" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="16" result="effect1_foregroundBlur_0_4"/>
+</filter>
+</defs>
+</svg>

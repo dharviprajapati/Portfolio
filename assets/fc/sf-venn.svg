@@ -1,0 +1,17 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="241.434" height="219.004" viewBox="0 0 241.434 219.004" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 89">
+<rect id="Orange Glow" x="47.0406" y="47.3521" width="150.779" height="143.926" rx="12.4611" fill="url(#paint0_radial_0_4)"/>
+<path id="Circle &#226;&#128;&#147; Design and Creativity" d="M191.138 68.8476C191.138 106.794 160.376 137.555 122.43 137.555C84.4843 137.555 53.7229 106.794 53.7229 68.8476C53.7229 30.9015 84.4843 0.140187 122.43 0.140187C160.376 0.140187 191.138 30.9015 191.138 68.8476Z" stroke-width="0.280375" stroke="#9C0B0B"/>
+<path id="Circle &#226;&#128;&#147; Conscious and Caring" d="M137.555 150.156C137.555 188.102 106.794 218.864 68.8476 218.864C30.9015 218.864 0.140187 188.102 0.140187 150.156C0.140187 112.21 30.9015 81.4488 68.8476 81.4488C106.794 81.4488 137.555 112.21 137.555 150.156Z" stroke-width="0.280375" stroke="#A60304"/>
+<path id="Circle &#226;&#128;&#147; Interconnectedness" d="M241.293 150.156C241.293 188.102 210.532 218.864 172.586 218.864C134.64 218.864 103.879 188.102 103.879 150.156C103.879 112.21 134.64 81.4488 172.586 81.4488C210.532 81.4488 241.293 112.21 241.293 150.156Z" stroke-width="0.280375" stroke="#980D0D"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(122.43 119.315) scale(75.3896 71.9628)">
+<stop stop-color="#FF3C00"/>
+<stop offset="0.3" stop-color="#FFD500"/>
+<stop offset="0.62" stop-color="#FFF59B"/>
+<stop offset="0.85" stop-color="#FFE066" stop-opacity="0.55"/>
+<stop offset="1" stop-color="#FFF1B9" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>
